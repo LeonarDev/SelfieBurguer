@@ -27,7 +27,7 @@ namespace SelfieBurguer.Domain.Services
             return _repository.GetById(id);
         }
 
-        public void Remove(TEntity obj)
+        public void Delete(TEntity obj)
         {
             _repository.Delete(obj);
         }

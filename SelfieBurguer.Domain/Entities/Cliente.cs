@@ -2,9 +2,9 @@
 {
     public class Cliente : Base
     {
-        public virtual Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
-        protected Cliente() { }
+        public Cliente() { }
 
         public Cliente(Usuario usuario)
         {

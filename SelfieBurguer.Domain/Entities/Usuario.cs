@@ -11,7 +11,7 @@ namespace SelfieBurguer.Domain.Entities
         public virtual bool Ativo { get; set; }
         public virtual TipoUsuarioEnum TipoUsuario { get; set; }
 
-        protected Usuario() {}
+        public Usuario() {}
 
         public Usuario(int id, string email, string senha, string nome, string cpf, TipoUsuarioEnum tipoUsuario)
         {

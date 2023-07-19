@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Mappers\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SelfieBurguer.Domain.Core\SelfieBurguer.Domain.Core.csproj" />
+    <ProjectReference Include="..\SelfieBurguer.Domain\SelfieBurguer.Domain.csproj" />
   </ItemGroup>
 
 </Project>
