@@ -7,9 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Repositories\" />
-    <Folder Include="Data\" />
     <Folder Include="CrossCutting\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SelfieBurguer.Domain.Core\SelfieBurguer.Domain.Core.csproj" />
+    <ProjectReference Include="..\SelfieBurguer.Domain\SelfieBurguer.Domain.csproj" />
   </ItemGroup>
 
 </Project>
