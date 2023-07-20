@@ -1,59 +1,54 @@
 ﻿using SelfieBurguer.Application.Dtos.Cliente;
 using SelfieBurguer.Application.Interfaces;
+using SelfieBurguer.Application.Interfaces.Mappers;
 using SelfieBurguer.Domain.Core.Interfaces.Services;
 using SelfieBurguer.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SelfieBurguer.Application
 {
-    public  class ApplicationServiceCliente
+    public class ApplicationServiceCliente : IApplicationServiceCliente
     {
-        public class ApplicationServiceCliente : IApplicationServiceCliente
+        private readonly IServiceCliente _serviceCliente;
+        private readonly IMapperCliente _mapperCliente;
+
+        public ApplicationServiceCliente(IServiceCliente serviceCliente, IMapperCliente mapperCliente)
         {
-            private readonly IServiceCliente serviceCliente;
-            private readonly IMapper mapper;
-            public ApplicationServiceCliente(IServiceCliente serviceCliente, IMapper mapper)
-            {
-                this.serviceCliente = serviceCliente;
-                this.mapper = mapper;
-            }
-            public void Add(ClienteDto clienteDto)
-            {
-                var cliente = mapper.Map<Cliente>(clienteDto);
-                serviceCliente.Add(cliente);
-            }
+            _serviceCliente = serviceCliente;
+            _mapperCliente = mapperCliente;
+        }
 
-            public IEnumerable<ClienteDto> GetAll()
-            {
-                var clientes = serviceCliente.GetAll();
-                var clientesDto = mapper.Map<IEnumerable<ClienteDto>>(clientes);
+        public void Add(ClienteDto clienteDto)
+        {
+            Cliente cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            _serviceCliente.Add(cliente);
+        }
 
-                return clientesDto;
-            }
+        public void Update(ClienteDto clienteDto)
+        {
+            Cliente cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            _serviceCliente.Update(cliente);
+        }
 
-            public ClienteDto GetById(int id)
-            {
-                var cliente = serviceCliente.GetById(id);
-                var clienteDto = mapper.Map<ClienteDto>(cliente);
+        public void Delete(ClienteDto clienteDto)
+        {
+            Cliente cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            _serviceCliente.Delete(cliente);
+        }
 
-                return clienteDto;
-            }
+        public IEnumerable<ClienteDto> GetAll()
+        {
+            IEnumerable<Cliente> clientes = _serviceCliente.GetAll();
+            IEnumerable<ClienteDto> clientesDto = _mapperCliente.MapperEntitiesListToDtosList(clientes);
 
-            public void Delete(ClienteDto clienteDto)
-            {
-                var cliente = mapper.Map<Cliente>(clienteDto);
-                serviceCliente.Remove(cliente);
-            }
+            return clientesDto;
+        }
 
-            public void Update(ClienteDto clienteDto)
-            {
-                var cliente = mapper.Map<Cliente>(clienteDto);
-                serviceCliente.Update(cliente);
-            }
+        public ClienteDto GetById(int id)
+        {
+            Cliente cliente = _serviceCliente.GetById(id);
+            ClienteDto clienteDto = _mapperCliente.MapperEntityToDto(cliente);
+
+            return clienteDto;
         }
     }
 }
