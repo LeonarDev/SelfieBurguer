@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SelfieBurguer.Application.Dtos.Cliente;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using SelfieBurguer.Application.Interfaces;
+using SelfieBurguer.DataTransfer.Cliente;
+using System.Reflection;
 
 namespace SelfieBurguer.API.Controllers
 {
@@ -20,7 +23,7 @@ namespace SelfieBurguer.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<IEnumerable<ClienteResponse>> GetAll()
+        public ActionResult<IEnumerable<ClienteResponse>> GetAll() //to do: add filters
         {
             var response = _applicationServiceCliente.GetAll();
 
@@ -43,53 +46,61 @@ namespace SelfieBurguer.API.Controllers
         /// <summary>
         /// POST api/clientes
         /// </summary>
-        /// <param name="clienteDTO"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] ClienteRequest request)
         {
-            if (request == null || request.IdUsuario == 0) return BadRequest();
+            if (request == null) return BadRequest();
+
+            foreach (PropertyInfo property in request.GetType().GetProperties())
+            {
+                if (property.PropertyType == typeof(string))
+                {
+                    string value = (string)property.GetValue(request);
+
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        return BadRequest();
+                    }
+                }
+            }
 
             _applicationServiceCliente.Add(request);
 
-            return Ok($"Cliente {request.IdUsuario} cadastrado com sucesso!");
+            return Created(HttpContext.Request.GetDisplayUrl(), _applicationServiceCliente.GetByEmail(request.Email));
         }
 
         /// <summary>
         /// PUT api/clientes/5
         /// </summary>
-        /// <param name="clienteDTO"></param>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPut]
-        public ActionResult Put([FromBody] ClienteRequest request)
+        [HttpPut("{id}")]
+        public ActionResult Put([FromRoute] int id, [FromBody] ClienteRequest request)
         {
-            if (request == null || request.IdUsuario == 0) return BadRequest();
+            if (request == null || id == 0) return BadRequest();
 
-            _applicationServiceCliente.Update(request);
+            _applicationServiceCliente.Update(id, request);
 
-            return Ok($"Cliente {request.IdUsuario} atualizado com sucesso!");
+            return Ok($"Cliente {request.Nome} {request.Sobrenome} atualizado com sucesso!");
         }
 
         /// <summary>
         /// DELETE api/clientes/5
         /// </summary>
-        /// <param name="clienteDTO"></param>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        [HttpDelete()]
-        public ActionResult Delete([FromBody] ClienteRequest request)
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id)
         {
-            try
-            {
-                if (request == null || request.IdUsuario == 0) return BadRequest();
+            if (id == 0) return BadRequest();
 
-                _applicationServiceCliente.Delete(request);
+            _applicationServiceCliente.Delete(id);
 
-                return Ok($"Cliente {request.IdUsuario} removido com sucesso!");
-            }
-            catch
-            {
-                throw;
-            }
+            return Ok($"Cliente {id} removido com sucesso!");
         }
     }
 }

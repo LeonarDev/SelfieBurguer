@@ -1,13 +1,13 @@
-﻿using SelfieBurguer.Application.Dtos.Usuario;
+﻿using SelfieBurguer.DataTransfer.Usuario;
 
 namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServiceUsuario
     {
-        void Add(UsuarioDto obj);
-        void Update(UsuarioDto obj);
-        void Delete(UsuarioDto obj);
-        IEnumerable<UsuarioDto> GetAll();
-        UsuarioDto GetById(int id);
+        void Add(UsuarioRequest obj);
+        void Update(UsuarioRequest obj);
+        void Delete(UsuarioRequest obj);
+        IEnumerable<UsuarioResponse> GetAll();
+        UsuarioResponse GetById(int id);
     }
 }

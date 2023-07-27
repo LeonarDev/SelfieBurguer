@@ -2,21 +2,16 @@
 
 namespace SelfieBurguer.Domain.Entities
 {
-    public class Pedido : Base
+    public class Pedido
     {
-        public virtual DateTime DataCriacao { get; set; }
-        public virtual DateTime? DataFim { get; set; }
-        public virtual StatusEnum Status { get; set; }
-        public virtual Cliente Cliente { get; set; }
-        public virtual Compra Compra { get; set; }
+        public int Id { get; set; }
+        public DateTime DataCriacao { get; set; }
+        public DateTime? DataFinalizacao { get; set; }
+        public StatusEnum Status { get; set; }
+        public Cliente Cliente { get; set; }
+        public Compra Compra { get; set; }
 
-        protected Pedido() { }
-
-        public Pedido(
-            DateTime dataCriacao,
-            StatusEnum status,
-            Cliente cliente,
-            Compra compra)
+        public Pedido(DateTime dataCriacao, StatusEnum status, Cliente cliente, Compra compra)
         {
             SetDataCriacao(dataCriacao);
             SetStatus(status);
@@ -24,14 +19,29 @@ namespace SelfieBurguer.Domain.Entities
             SetCompra(compra);
         }
 
-        public virtual void SetDataCriacao(DateTime dataCriacao) => DataCriacao = dataCriacao;
+        public void SetDataCriacao(DateTime dataCriacao)
+        {
+            DataCriacao = dataCriacao;
+        }
 
-        public virtual void SetDataFim(DateTime dataFim) => DataFim = dataFim;
+        public void SetDataFinalizacao(DateTime dataFinalizacao)
+        {
+            DataFinalizacao = dataFinalizacao;
+        }
 
-        public virtual void SetStatus(StatusEnum status) => Status = status;
+        public void SetStatus(StatusEnum status)
+        {
+            Status = status;
+        }
 
-        public virtual void SetCliente(Cliente cliente) => Cliente = cliente;
+        public void SetCliente(Cliente cliente)
+        {
+            Cliente = cliente;
+        }
 
-        public virtual void SetCompra(Compra compra) => Compra = compra;
+        public void SetCompra(Compra compra)
+        {
+            Compra = compra;
+        }
     }
 }

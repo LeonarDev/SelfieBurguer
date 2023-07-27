@@ -7,8 +7,8 @@ namespace SelfieBurguer.Domain.Enums
         [Description("Proponente Sem Cadastro")]
         Proponente_Sem_Cadastro = 1,
 
-        [Description("Cliente")]
-        Cliente = 2,
+        [Description("Cliente Cadastrado")]
+        Cliente_Cadastrado = 2,
 
         [Description("Administrador")]
         Administrador = 3,

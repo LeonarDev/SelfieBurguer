@@ -1,13 +1,13 @@
-﻿using SelfieBurguer.Application.Dtos.Pedido;
+﻿using SelfieBurguer.DataTransfer.Pedido;
 
 namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServicePedido
     {
-        void Add(PedidoDto obj);
-        void Update(PedidoDto obj);
-        void Delete(PedidoDto obj);
-        IEnumerable<PedidoDto> GetAll();
-        PedidoDto GetById(int id);
+        void Add(PedidoRequest obj);
+        void Update(PedidoRequest obj);
+        void Delete(PedidoRequest obj);
+        IEnumerable<PedidoResponse> GetAll();
+        PedidoResponse GetById(int id);
     }
 }

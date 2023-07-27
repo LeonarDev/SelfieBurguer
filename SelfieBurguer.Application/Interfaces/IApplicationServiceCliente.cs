@@ -1,13 +1,14 @@
-﻿using SelfieBurguer.Application.Dtos.Cliente;
+﻿using SelfieBurguer.DataTransfer.Cliente;
 
 namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServiceCliente
     {
-        void Add(ClienteDto obj);
-        void Update(ClienteDto obj);
-        void Delete(ClienteDto obj);
-        IEnumerable<ClienteDto> GetAll();
-        ClienteDto GetById(int id);
+        void Add(ClienteRequest obj);
+        void Update(int id, ClienteRequest obj);
+        void Delete(int id);
+        IEnumerable<ClienteResponse> GetAll();
+        ClienteResponse GetById(int id);
+        ClienteResponse GetByEmail(string email);
     }
 }

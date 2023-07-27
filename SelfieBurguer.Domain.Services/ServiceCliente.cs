@@ -12,5 +12,10 @@ namespace SelfieBurguer.Domain.Services
         {
             _repositoryCliente = repositoryCliente;
         }
+
+        public Cliente GetByEmail(string email)
+        {
+            return _repositoryCliente.GetByEmail(email);
+        }
     }
 }

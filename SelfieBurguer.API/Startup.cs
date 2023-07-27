@@ -82,10 +82,11 @@ namespace SelfieBurguer
             var connection = Configuration["SqlConnection:SqlConnectionString"];
             services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Model DDD", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Selfie Burguer", Version = "v1" });
             });
         }
 
@@ -101,11 +102,12 @@ namespace SelfieBurguer
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Model DDD");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Selfie Burguer");
             });
 
             app.UseHttpsRedirection();

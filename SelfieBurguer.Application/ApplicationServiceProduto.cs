@@ -1,6 +1,6 @@
-﻿using SelfieBurguer.Application.Dtos.Produto;
+﻿using AutoMapper;
 using SelfieBurguer.Application.Interfaces;
-using SelfieBurguer.Application.Interfaces.Mappers;
+using SelfieBurguer.DataTransfer.Produto;
 using SelfieBurguer.Domain.Core.Interfaces.Services;
 using SelfieBurguer.Domain.Entities;
 
@@ -9,46 +9,42 @@ namespace SelfieBurguer.Application
     public class ApplicationServiceProduto : IApplicationServiceProduto
     {
         private readonly IServiceProduto _serviceProduto;
-        private readonly IMapperProduto _mapperProduto;
+        private readonly IMapper _mapper;
 
-        public ApplicationServiceProduto(IServiceProduto serviceProduto, IMapperProduto mapperProduto)
+        public ApplicationServiceProduto(IServiceProduto serviceProduto, IMapper mapper)
         {
             _serviceProduto = serviceProduto;
-            _mapperProduto = mapperProduto;
+            _mapper = mapper;
         }
 
-        public void Add(ProdutoDto produtoDto)
+        public void Add(ProdutoRequest request)
         {
-            Produto produto = _mapperProduto.MapperDtoToEntity(produtoDto);
-            _serviceProduto.Add(produto);
+            var cliente = _mapper.Map<Produto>(request);
+            _serviceProduto.Add(cliente);
         }
 
-        public void Update(ProdutoDto produtoDto)
+        public void Update(ProdutoRequest request)
         {
-            Produto produto = _mapperProduto.MapperDtoToEntity(produtoDto);
-            _serviceProduto.Update(produto);
+            var cliente = _mapper.Map<Produto>(request);
+            _serviceProduto.Update(cliente);
         }
 
-        public void Delete(ProdutoDto produtoDto)
+        public void Delete(ProdutoRequest request)
         {
-            Produto produto = _mapperProduto.MapperDtoToEntity(produtoDto);
-            _serviceProduto.Delete(produto);
+            var cliente = _mapper.Map<Produto>(request);
+            _serviceProduto.Delete(cliente);
         }
 
-        public IEnumerable<ProdutoDto> GetAll()
+        public IEnumerable<ProdutoResponse> GetAll()
         {
-            IEnumerable<Produto> produtos = _serviceProduto.GetAll();
-            IEnumerable<ProdutoDto> produtosDto = _mapperProduto.MapperEntitiesListToDtosList(produtos);
-
-            return produtosDto;
+            IEnumerable<Produto> clientes = _serviceProduto.GetAll();
+            return _mapper.Map<IEnumerable<ProdutoResponse>>(clientes);
         }
 
-        public ProdutoDto GetById(int id)
+        public ProdutoResponse GetById(int id)
         {
-            Produto produto = _serviceProduto.GetById(id);
-            ProdutoDto produtoDto = _mapperProduto.MapperEntityToDto(produto);
-
-            return produtoDto;
+            Produto cliente = _serviceProduto.GetById(id);
+            return _mapper.Map<ProdutoResponse>(cliente);
         }
     }
 }

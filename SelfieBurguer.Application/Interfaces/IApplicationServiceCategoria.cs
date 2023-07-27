@@ -1,13 +1,13 @@
-﻿using SelfieBurguer.Application.Dtos.Categoria;
+﻿using SelfieBurguer.DataTransfer.Categoria;
 
 namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServiceCategoria
     {
-        void Add(CategoriaDto obj);
-        void Update(CategoriaDto obj);
-        void Delete(CategoriaDto obj);
-        IEnumerable<CategoriaDto> GetAll();
-        CategoriaDto GetById(int id);
+        void Add(CategoriaRequest obj);
+        void Update(CategoriaRequest obj);
+        void Delete(CategoriaRequest obj);
+        IEnumerable<CategoriaResponse> GetAll();
+        CategoriaResponse GetById(int id);
     }
 }

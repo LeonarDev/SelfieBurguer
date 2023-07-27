@@ -1,7 +1,8 @@
 ﻿namespace SelfieBurguer.Domain.Entities
 {
-    public class Compra : Base
+    public class Compra
     {
+        public int Id { get; set; }
         public virtual IList<Produto> Produtos { get; set; } = new List<Produto>();
         public virtual double ValorTotal { get; set; } = 0;
 

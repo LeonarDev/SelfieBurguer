@@ -1,17 +1,16 @@
 ﻿namespace SelfieBurguer.Domain.Entities
 {
-    public class Categoria : Base
+    public class Categoria
     {
-        public virtual string Nome { get; set; }
-
-        protected Categoria() { }
+        public int Id { get; set; }
+        public string Nome { get; set; }
 
         public Categoria(string nome)
         {
             SetNome(nome);
         }
 
-        public virtual void SetNome(string nome)
+        public void SetNome(string nome)
         {
             Nome = nome;
         }

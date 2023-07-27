@@ -16,7 +16,10 @@ namespace SelfieBurguer.Domain.Enums
         [Description("Pedido Finalizado")]
         Pedido_Finalizado = 4,
 
-        [Description("Pedido Entregue")]
-        Pedido_Entregue = 5,
+        [Description("Pedido Concluído")]
+        Pedido_Concluido = 5,
+
+        [Description("Pedido Cancelado")]
+        Pedido_Cancelado = 6,
     }
 }

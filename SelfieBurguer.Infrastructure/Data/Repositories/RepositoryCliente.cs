@@ -13,5 +13,10 @@ namespace RestApiModeloDDD.Infrastructure.Data.Repositorys
         {
             _sqlContext = sqlContext;
         }
+
+        public Cliente GetByEmail(string email)
+        {
+            return _sqlContext.Set<Cliente>().Find(email);
+        }
     }
 }

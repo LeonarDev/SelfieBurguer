@@ -1,6 +1,6 @@
-﻿using SelfieBurguer.Application.Dtos.Cliente;
+﻿using AutoMapper;
 using SelfieBurguer.Application.Interfaces;
-using SelfieBurguer.Application.Interfaces.Mappers;
+using SelfieBurguer.DataTransfer.Cliente;
 using SelfieBurguer.Domain.Core.Interfaces.Services;
 using SelfieBurguer.Domain.Entities;
 
@@ -9,46 +9,53 @@ namespace SelfieBurguer.Application
     public class ApplicationServiceCliente : IApplicationServiceCliente
     {
         private readonly IServiceCliente _serviceCliente;
-        private readonly IMapperCliente _mapperCliente;
+        private readonly IMapper _mapper;
 
-        public ApplicationServiceCliente(IServiceCliente serviceCliente, IMapperCliente mapperCliente)
+        public ApplicationServiceCliente(IServiceCliente serviceCliente, IMapper mapper)
         {
             _serviceCliente = serviceCliente;
-            _mapperCliente = mapperCliente;
+            _mapper = mapper;
         }
 
-        public void Add(ClienteDto clienteDto)
+        public void Add(ClienteRequest request)
         {
-            Cliente cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            var cliente = _mapper.Map<Cliente>(request);
             _serviceCliente.Add(cliente);
         }
 
-        public void Update(ClienteDto clienteDto)
+        public void Update(int id, ClienteRequest request)
         {
-            Cliente cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            Cliente cliente = _serviceCliente.GetById(id);
+
+            cliente.SetNome(request.Nome);
+            cliente.SetSobrenome(request.Sobrenome);
+            cliente.SetEmail(request.Email);
+
             _serviceCliente.Update(cliente);
         }
 
-        public void Delete(ClienteDto clienteDto)
+        public void Delete(int id)
         {
-            Cliente cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            Cliente cliente = _serviceCliente.GetById(id);
             _serviceCliente.Delete(cliente);
         }
 
-        public IEnumerable<ClienteDto> GetAll()
+        public IEnumerable<ClienteResponse> GetAll()
         {
             IEnumerable<Cliente> clientes = _serviceCliente.GetAll();
-            IEnumerable<ClienteDto> clientesDto = _mapperCliente.MapperEntitiesListToDtosList(clientes);
-
-            return clientesDto;
+            return _mapper.Map<IEnumerable<ClienteResponse>>(clientes);
         }
 
-        public ClienteDto GetById(int id)
+        public ClienteResponse GetById(int id)
         {
             Cliente cliente = _serviceCliente.GetById(id);
-            ClienteDto clienteDto = _mapperCliente.MapperEntityToDto(cliente);
+            return _mapper.Map<ClienteResponse>(cliente);
+        }
 
-            return clienteDto;
+        public ClienteResponse GetByEmail(string email)
+        {
+            Cliente cliente = _serviceCliente.GetByEmail(email);
+            return _mapper.Map<ClienteResponse>(cliente);
         }
     }
 }

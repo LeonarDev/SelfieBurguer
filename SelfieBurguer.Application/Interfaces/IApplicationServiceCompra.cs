@@ -1,13 +1,13 @@
-﻿using SelfieBurguer.Application.Dtos.Compra;
+﻿using SelfieBurguer.DataTransfer.Compra;
 
 namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServiceCompra
     {
-        void Add(CompraDto obj);
-        void Update(CompraDto obj);
-        void Delete(CompraDto obj);
-        IEnumerable<CompraDto> GetAll();
-        CompraDto GetById(int id);
+        void Add(CompraRequest obj);
+        void Update(CompraRequest obj);
+        void Delete(CompraRequest obj);
+        IEnumerable<CompraResponse> GetAll();
+        CompraResponse GetById(int id);
     }
 }

@@ -1,13 +1,13 @@
-﻿using SelfieBurguer.Application.Dtos.Produto;
+﻿using SelfieBurguer.DataTransfer.Produto;
 
 namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServiceProduto
     {
-        void Add(ProdutoDto obj);
-        void Update(ProdutoDto obj);
-        void Delete(ProdutoDto obj);
-        IEnumerable<ProdutoDto> GetAll();
-        ProdutoDto GetById(int id);
+        void Add(ProdutoRequest obj);
+        void Update(ProdutoRequest obj);
+        void Delete(ProdutoRequest obj);
+        IEnumerable<ProdutoResponse> GetAll();
+        ProdutoResponse GetById(int id);
     }
 }
