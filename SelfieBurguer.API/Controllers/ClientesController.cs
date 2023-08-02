@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using SelfieBurguer.Application.Interfaces;
 using SelfieBurguer.DataTransfer.Cliente;
@@ -23,7 +22,7 @@ namespace SelfieBurguer.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<IEnumerable<ClienteResponse>> GetAll() //to do: add filters
+        public ActionResult<IEnumerable<ClienteResponse>> GetAll() //to do: implementar filtros
         {
             var response = _applicationServiceCliente.GetAll();
 
@@ -66,9 +65,10 @@ namespace SelfieBurguer.API.Controllers
                 }
             }
 
-            _applicationServiceCliente.Add(request);
+            string uri = HttpContext.Request.GetDisplayUrl();
+            ClienteResponse cliente = _applicationServiceCliente.Add(request);
 
-            return Created(HttpContext.Request.GetDisplayUrl(), _applicationServiceCliente.GetByEmail(request.Email));
+            return Created(uri, cliente);
         }
 
         /// <summary>

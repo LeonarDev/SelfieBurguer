@@ -29,7 +29,6 @@ namespace SelfieBurguer.Infrastructure.CrossCutting.IOC
             {
                 cfg.AddProfile(new CategoriasProfile());
                 cfg.AddProfile(new ClientesProfile());
-                cfg.AddProfile(new ComprasProfile());
                 cfg.AddProfile(new ProdutosProfile());
                 cfg.AddProfile(new PedidosProfile());
                 cfg.AddProfile(new UsuariosProfile());

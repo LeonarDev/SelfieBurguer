@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SelfieBurguer.DataTransfer.Cliente;
+using SelfieBurguer.DataTransfer.Pedido;
 using SelfieBurguer.Domain.Entities;
 
 namespace SelfieBurguer.Application.Profiles
@@ -8,13 +9,18 @@ namespace SelfieBurguer.Application.Profiles
     {
         public ClientesProfile()
         {
-            ClienteMap();
+            //ClienteMap();
+            CreateMap<Cliente, ClienteResponse>();
+            //CreateMap<IEnumerable<Cliente>, IEnumerable<ClienteResponse>>();
+
+            CreateMap<Pedido, PedidoResponse>();
+            //CreateMap<IEnumerable<Pedido>, IEnumerable<PedidoResponse>>();
         }
 
-        private void ClienteMap()
-        {
-            CreateMap<Cliente, ClienteResponse>();
-            CreateMap<IEnumerable<Cliente>, IEnumerable<ClienteResponse>>();
-        }
+        //private void ClienteMap()
+        //{
+        //    CreateMap<Cliente, ClienteResponse>();
+        //    CreateMap<IEnumerable<Cliente>, IEnumerable<ClienteResponse>>();
+        //}
     }
 }

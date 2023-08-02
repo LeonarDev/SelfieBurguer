@@ -1,7 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace SelfieBurguer.Domain.Entities
 {
+    [Table("Cliente")]
     public class Cliente
     {
         public int Id { get; set; }
@@ -10,7 +12,7 @@ namespace SelfieBurguer.Domain.Entities
         public string Email { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
-        public IList<Pedido> Pedidos { get; set; } = new List<Pedido>();
+        public IEnumerable<Pedido> Pedidos { get; set; } = new List<Pedido>();
 
         public Cliente(string nome, string sobrenome, string email)
         {
@@ -30,7 +32,7 @@ namespace SelfieBurguer.Domain.Entities
 
         public void SetSobrenome(string sobrenome)
         {
-            if (sobrenome.Trim().Length < 6) throw new Exception("O sobrenome deve conter ao menos 5 caracteres");
+            if (sobrenome.Trim().Length < 3) throw new Exception("O sobrenome deve conter ao menos 4 caracteres");
 
             Sobrenome = sobrenome;
         }
@@ -53,11 +55,6 @@ namespace SelfieBurguer.Domain.Entities
         public void SetDataCadastro(DateTime dataCadastro)
         {
             DataCadastro = dataCadastro;
-        }
-
-        public void SetPedido(Pedido pedido)
-        {
-            Pedidos.Add(pedido);
         }
     }
 }

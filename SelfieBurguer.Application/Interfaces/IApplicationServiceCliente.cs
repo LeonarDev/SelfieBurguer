@@ -4,7 +4,7 @@ namespace SelfieBurguer.Application.Interfaces
 {
     public interface IApplicationServiceCliente
     {
-        void Add(ClienteRequest obj);
+        ClienteResponse Add(ClienteRequest obj);
         void Update(int id, ClienteRequest obj);
         void Delete(int id);
         IEnumerable<ClienteResponse> GetAll();

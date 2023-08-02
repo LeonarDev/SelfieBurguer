@@ -8,13 +8,14 @@ namespace SelfieBurguer.Application.Profiles
     {
         public PedidosProfile()
         {
-            PedidoMap();
+            //PedidoMap();
+            CreateMap<Pedido, PedidoResponse>();
         }
 
         private void PedidoMap()
         {
             CreateMap<Pedido, PedidoResponse>();
-            CreateMap<IEnumerable<Pedido>, IEnumerable<PedidoResponse>>();
+            //CreateMap<IEnumerable<Pedido>, IEnumerable<PedidoResponse>>();
         }
     }
 }

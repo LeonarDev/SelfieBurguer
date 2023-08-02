@@ -6,5 +6,6 @@ namespace SelfieBurguer.Domain.Core.Interfaces.Services
     public interface IServiceCliente : IServiceBase<Cliente>
     {
         Cliente GetByEmail(string email);
+        Cliente Instantiate(ClienteRequest request);
     }
 }

@@ -3,12 +3,13 @@
     public class Produto
     {
         public int Id { get; set; }
-        public string? Nome { get; set; }
+        public string Nome { get; set; }
         public string? Descricao { get; set; }
         public string? Observacao { get; set; }
-        public double Preco { get; set; }
+        public double Valor { get; set; }
         public bool Disponivel { get; set; }
         public byte[] Imagem { get; set; }
+        public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
 
         public Produto() { }
@@ -51,7 +52,7 @@
 
         public void SetObservacao(string observacao) => Observacao = observacao;
 
-        public void SetPreco(double preco) => Preco = preco;
+        public void SetPreco(double preco) => Valor = preco;
 
         public void SetDisponivel(bool disponivel) => Disponivel = disponivel;
 

@@ -8,16 +8,26 @@ namespace SelfieBurguer.Domain.Entities
         public DateTime DataCriacao { get; set; }
         public DateTime? DataFinalizacao { get; set; }
         public StatusEnum Status { get; set; }
+        public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        public Compra Compra { get; set; }
-
-        public Pedido(DateTime dataCriacao, StatusEnum status, Cliente cliente, Compra compra)
+        public IList<PedidoProduto> PedidoProdutos { get; set; } = new List<PedidoProduto>();
+        public double ValorTotal
         {
-            SetDataCriacao(dataCriacao);
-            SetStatus(status);
-            SetCliente(cliente);
-            SetCompra(compra);
+            get
+            {
+                return PedidoProdutos.Sum(pedidoProduto => pedidoProduto.Produto.Valor);
+            }
         }
+
+        //public double ValorTotal { get; set; }
+
+        //public Pedido(Cliente cliente, IEnumerable<Produto> produtos)
+        //{
+        //    SetDataCriacao(DateTime.Now);
+        //    SetStatus(StatusEnum.Pagamento_Pendente);
+        //    SetProdutos(produtos);
+        //    SetValorTotal();
+        //}
 
         public void SetDataCriacao(DateTime dataCriacao)
         {
@@ -39,9 +49,15 @@ namespace SelfieBurguer.Domain.Entities
             Cliente = cliente;
         }
 
-        public void SetCompra(Compra compra)
-        {
-            Compra = compra;
-        }
+        //public void SetProdutos(IEnumerable<Produto> produtos)
+        //{
+        //    foreach (Produto produto in produtos)
+        //        Produtos.Add(produto);
+        //}
+
+        //public void SetValorTotal()
+        //{
+        //    ValorTotal = Produtos.Sum(produto => produto.Valor);
+        //}
     }
 }

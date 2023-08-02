@@ -17,14 +17,17 @@ namespace SelfieBurguer.Application
             _mapper = mapper;
         }
 
-        public void Add(ClienteRequest request)
+        public ClienteResponse Add(ClienteRequest request)
         {
-            var cliente = _mapper.Map<Cliente>(request);
+            Cliente cliente = _serviceCliente.Instantiate(request);
             _serviceCliente.Add(cliente);
+            return _mapper.Map<ClienteResponse>(cliente);
         }
 
         public void Update(int id, ClienteRequest request)
         {
+            // verificar necessidade da transaction (unitOfWork)
+
             Cliente cliente = _serviceCliente.GetById(id);
 
             cliente.SetNome(request.Nome);
@@ -43,6 +46,7 @@ namespace SelfieBurguer.Application
         public IEnumerable<ClienteResponse> GetAll()
         {
             IEnumerable<Cliente> clientes = _serviceCliente.GetAll();
+
             return _mapper.Map<IEnumerable<ClienteResponse>>(clientes);
         }
 

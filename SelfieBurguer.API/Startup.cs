@@ -62,6 +62,7 @@ using Autofac;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using SelfieBurguer.Application.Profiles;
 using SelfieBurguer.Infrastructure.CrossCutting.IOC;
 using SelfieBurguer.Infrastructure.Data;
 
@@ -84,10 +85,14 @@ namespace SelfieBurguer
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Selfie Burguer", Version = "v1" });
             });
+
+            //services.AddAutoMapper(typeof(ClientesProfile));
+            //services.AddAutoMapper(typeof(PedidosProfile));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
