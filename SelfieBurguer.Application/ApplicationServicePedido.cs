@@ -4,6 +4,7 @@ using SelfieBurguer.DataTransfer.Cliente;
 using SelfieBurguer.DataTransfer.Pedido;
 using SelfieBurguer.Domain.Core.Interfaces.Services;
 using SelfieBurguer.Domain.Entities;
+using SelfieBurguer.Domain.Enums;
 
 namespace SelfieBurguer.Application
 {
@@ -18,9 +19,28 @@ namespace SelfieBurguer.Application
             _mapper = mapper;
         }
 
+        public void Add(PedidoRequest request)
+        {
+            Pedido pedido = _servicePedido.Instanciar(request);
+
+            _servicePedido.Add(pedido);
+            
+            _servicePedido.AdicionarProdutos(pedido, request.ProdutosIds);
+        }
+
+        public void AlterarStatus(int id, PedidoRequest request)
+        {
+            _servicePedido.AlterarStatus(id, request);
+        }
+
+        public PedidoResponse GetById(int id)
+        {
+            Pedido pedido = _servicePedido.GetById(id);
+            return _mapper.Map<PedidoResponse>(pedido);
+        }
+
         public IEnumerable<PedidoResponse> Listar()
         {
-            //IEnumerable<Pedido> pedidos = _servicePedido.GetAll();
             IEnumerable<Pedido> pedidos = _servicePedido.Listar();
             return _mapper.Map<IEnumerable<PedidoResponse>>(pedidos);
         }

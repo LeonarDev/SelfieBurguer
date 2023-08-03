@@ -30,58 +30,50 @@ namespace SelfieBurguer.API.Controllers
             return Ok(response);
         }
 
-        ///// <summary>
-        ///// GET api/pedidos/5
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpGet("{id}")]
-        //public ActionResult<PedidoResponse> GetById([FromRoute] int id)
-        //{
-        //    var response = _applicationServicePedido.GetById(id);
+        /// <summary>
+        /// GET api/pedidos/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public ActionResult<PedidoResponse> GetById([FromRoute] int id)
+        {
+            var response = _applicationServicePedido.GetById(id);
 
-        //    return response.Id > 0 ? Ok(response) : NotFound();
-        //}
+            return response.Id > 0 ? Ok(response) : NotFound();
+        }
 
-        ///// <summary>
-        ///// GET api/pedidos?categoria=bebida
-        ///// </summary>
-        ///// <param name="categoria"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //public ActionResult<IEnumerable<PedidoResponse>> GetByCategoria([FromQuery] string categoria)
-        //{
-        //    var response = _applicationServicePedido.GetByCategoria(categoria);
+        /// <summary>
+        /// POST api/pedido
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Post([FromBody] PedidoRequest request)
+        {
+            // FLUXO:
+            // 1) Criar objeto PEDIDO com o ClienteId (request.ClienteId)
+            // 2) Criar objeto PedidoProduto
+            // 3) Vincular PedidoId criado no passo 1 no PedidoProduto criado no passo 2
+            // 4) Vincular produtos (int[] ProdutosIds) em PedidoProduto
+            if (request == null) return BadRequest();
 
-        //    return response.Count() > 0 ? Ok(response) : NotFound();
-        //}
+            foreach (PropertyInfo property in request.GetType().GetProperties())
+            {
+                if (property.PropertyType == typeof(string))
+                {
+                    string value = (string)property.GetValue(request);
 
-        ///// <summary>
-        ///// POST api/pedido
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //public ActionResult Post([FromBody] PedidoRequest request)
-        //{
-        //    if (request == null) return BadRequest();
+                    if (string.IsNullOrEmpty(value))
+                        return BadRequest();
+                }
+            }
 
-        //    foreach (PropertyInfo property in request.GetType().GetProperties())
-        //    {
-        //        if (property.PropertyType == typeof(string))
-        //        {
-        //            string value = (string)property.GetValue(request);
+            string uri = HttpContext.Request.GetDisplayUrl();
+            _applicationServicePedido.Add(request);
 
-        //            if (string.IsNullOrEmpty(value))
-        //                return BadRequest();
-        //        }
-        //    }
-
-        //    string uri = HttpContext.Request.GetDisplayUrl();
-        //    _applicationServicePedido.Add(request);
-
-        //    return Created(uri, request);
-        //}
+            return Created(uri, request);
+        }
 
         ///// <summary>
         ///// PUT api/pedido/5

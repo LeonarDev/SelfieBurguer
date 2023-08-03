@@ -21,15 +21,12 @@ namespace SelfieBurguer.Domain.Entities
             }
         }
 
-        //public double ValorTotal { get; protected set; }
-
-        //public Pedido(Cliente cliente, IEnumerable<Produto> produtos)
-        //{
-        //    SetDataCriacao(DateTime.Now);
-        //    SetStatus(StatusEnum.Pagamento_Pendente);
-        //    SetProdutos(produtos);
-        //    SetValorTotal();
-        //}
+        public Pedido(int clienteId)
+        {
+            SetCliente(clienteId);
+            SetDataCriacao(DateTime.Now);
+            SetStatus(StatusEnum.Pagamento_Pendente);
+        }
 
         public void SetDataCriacao(DateTime dataCriacao)
         {
@@ -46,20 +43,14 @@ namespace SelfieBurguer.Domain.Entities
             Status = status;
         }
 
-        public void SetCliente(Cliente cliente)
+        public void SetCliente(int clienteId)
         {
-            Cliente = cliente;
+            ClienteId = clienteId;
         }
 
-        //public void SetProdutos(IEnumerable<Produto> produtos)
-        //{
-        //    foreach (Produto produto in produtos)
-        //        Produtos.Add(produto);
-        //}
-
-        //public void SetValorTotal()
-        //{
-        //    ValorTotal = Produtos.Sum(produto => produto.Valor);
-        //}
+        public void SetPedidoProdutos(PedidoProduto pedidoProduto)
+        {
+            PedidoProdutos.Add(pedidoProduto);
+        }
     }
 }
