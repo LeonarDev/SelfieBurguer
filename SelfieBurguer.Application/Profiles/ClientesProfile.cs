@@ -8,7 +8,7 @@ namespace SelfieBurguer.Application.Profiles
     {
         public ClientesProfile()
         {
-            CreateMap<Cliente, ClienteResponse>().PreserveReferences(); ;
+            CreateMap<Cliente, ClienteResponse>().PreserveReferences();
         }
     }
 }

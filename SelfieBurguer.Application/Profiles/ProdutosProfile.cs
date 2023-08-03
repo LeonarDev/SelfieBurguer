@@ -9,7 +9,6 @@ namespace SelfieBurguer.Application.Profiles
         public ProdutosProfile()
         {
             CreateMap<Produto, ProdutoResponse>();
-
         }
     }
 }

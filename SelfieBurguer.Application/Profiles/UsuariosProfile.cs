@@ -9,7 +9,6 @@ namespace SelfieBurguer.Application.Profiles
         public UsuariosProfile()
         {
             CreateMap<Usuario, UsuarioResponse>();
-
         }
     }
 }
