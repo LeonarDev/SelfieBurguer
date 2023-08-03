@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SelfieBurguer.Application.Interfaces;
+using SelfieBurguer.DataTransfer.Cliente;
 using SelfieBurguer.DataTransfer.Produto;
 using SelfieBurguer.Domain.Core.Interfaces.Services;
 using SelfieBurguer.Domain.Entities;
@@ -19,32 +20,47 @@ namespace SelfieBurguer.Application
 
         public void Add(ProdutoRequest request)
         {
-            var cliente = _mapper.Map<Produto>(request);
-            _serviceProduto.Add(cliente);
+            Produto produto = _serviceProduto.Instantiate(request);
+
+            _serviceProduto.Add(produto);
         }
 
-        public void Update(ProdutoRequest request)
+        public void Update(int id, ProdutoRequest request)
         {
-            var cliente = _mapper.Map<Produto>(request);
-            _serviceProduto.Update(cliente);
+            Produto produto = _serviceProduto.GetById(id);
+
+            produto.SetNome(request.Nome);
+            produto.SetDescricao(request.Descricao);
+            produto.SetObservacao(request.Observacao);
+            produto.SetValor(request.Valor);
+            produto.SetCategoria(request.CategoriaId);
+
+            _serviceProduto.Update(produto);
         }
 
-        public void Delete(ProdutoRequest request)
+        public void Delete(int id)
         {
-            var cliente = _mapper.Map<Produto>(request);
-            _serviceProduto.Delete(cliente);
+            Produto produto = _serviceProduto.GetById(id);
+            _serviceProduto.Delete(produto);
         }
 
         public IEnumerable<ProdutoResponse> GetAll()
         {
-            IEnumerable<Produto> clientes = _serviceProduto.GetAll();
-            return _mapper.Map<IEnumerable<ProdutoResponse>>(clientes);
+            IEnumerable<Produto> produtos = _serviceProduto.GetAll();
+            return _mapper.Map<IEnumerable<ProdutoResponse>>(produtos);
         }
 
         public ProdutoResponse GetById(int id)
         {
-            Produto cliente = _serviceProduto.GetById(id);
-            return _mapper.Map<ProdutoResponse>(cliente);
+            Produto produto = _serviceProduto.GetById(id);
+            return _mapper.Map<ProdutoResponse>(produto);
+        }
+
+        public IEnumerable<ProdutoResponse> GetByCategoria(string categoria)
+        {
+            IEnumerable<Produto> produtos = _serviceProduto.GetByCategoria(categoria);
+            return _mapper.Map<IEnumerable<ProdutoResponse>>(produtos);
+
         }
     }
 }

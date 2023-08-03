@@ -18,12 +18,15 @@ namespace SelfieBurguer.Infrastructure.CrossCutting.IOC
 
             builder.RegisterType<ApplicationServiceCliente>().As<IApplicationServiceCliente>();
             builder.RegisterType<ApplicationServiceProduto>().As<IApplicationServiceProduto>();
+            builder.RegisterType<ApplicationServicePedido>().As<IApplicationServicePedido>();
 
             builder.RegisterType<ServiceCliente>().As<IServiceCliente>();
             builder.RegisterType<ServiceProduto>().As<IServiceProduto>();
+            builder.RegisterType<ServicePedido>().As<IServicePedido>();
 
             builder.RegisterType<RepositoryCliente>().As<IRepositoryCliente>();
             builder.RegisterType<RepositoryProduto>().As<IRepositoryProduto>();
+            builder.RegisterType<RepositoryPedido>().As<IRepositoryPedido>();
 
             builder.Register(ctx => new MapperConfiguration(cfg =>
             {
@@ -32,7 +35,7 @@ namespace SelfieBurguer.Infrastructure.CrossCutting.IOC
                 cfg.AddProfile(new ProdutosProfile());
                 cfg.AddProfile(new PedidosProfile());
                 cfg.AddProfile(new UsuariosProfile());
-
+                cfg.AddProfile(new PedidosProdutosProfile());
             }));
 
             builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();

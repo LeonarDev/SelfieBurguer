@@ -14,9 +14,9 @@ namespace SelfieBurguer.Domain.Services
             _repositoryCliente = repositoryCliente;
         }
 
-        public Cliente GetByEmail(string email)
+        public Cliente GetByCpf(string cpf)
         {
-            return _repositoryCliente.GetByEmail(email);
+            return _repositoryCliente.GetByCpf(cpf);
         }
 
         public Cliente Instantiate(ClienteRequest request)

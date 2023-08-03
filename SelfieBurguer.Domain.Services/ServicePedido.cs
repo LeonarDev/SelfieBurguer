@@ -12,5 +12,10 @@ namespace SelfieBurguer.Domain.Services
         {
             _repositoryPedido = repositoryPedido;
         }
+
+        public IEnumerable<Pedido> Listar()
+        {
+            return _repositoryPedido.Listar();
+        }
     }
 }

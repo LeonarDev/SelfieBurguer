@@ -1,67 +1,68 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using SelfieBurguer.Application.Interfaces;
-using SelfieBurguer.DataTransfer.Cliente;
+using SelfieBurguer.DataTransfer.Produto;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace SelfieBurguer.API.Controllers
 {
-    [Route("api/cliente")]
+    [Route("api/produto")]
     [ApiController]
-    public class ClientesController : Controller
+    public class ProdutosController : Controller
     {
-        private readonly IApplicationServiceCliente _applicationServiceCliente;
+        private readonly IApplicationServiceProduto _applicationServiceProduto;
 
-        public ClientesController(IApplicationServiceCliente ApplicationServiceCliente)
+        public ProdutosController(IApplicationServiceProduto ApplicationServiceProduto)
         {
-            _applicationServiceCliente = ApplicationServiceCliente;
+            _applicationServiceProduto = ApplicationServiceProduto;
         }
 
         /// <summary>
-        /// GET api/clientes
+        /// GET api/produtos
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/api/clientes")]
-        public ActionResult<IEnumerable<ClienteResponse>> GetAll()
+        [HttpGet("/api/produtos")]
+        public ActionResult<IEnumerable<ProdutoResponse>> GetAll()
         {
-            var response = _applicationServiceCliente.GetAll();
+            var response = _applicationServiceProduto.GetAll();
 
             return Ok(response);
         }
 
         /// <summary>
-        /// GET api/clientes/5
+        /// GET api/produtos/5
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<ClienteResponse> GetById([FromRoute] int id)
+        public ActionResult<ProdutoResponse> GetById([FromRoute] int id)
         {
-            var response = _applicationServiceCliente.GetById(id);
+            var response = _applicationServiceProduto.GetById(id);
 
             return response.Id > 0 ? Ok(response) : NotFound();
         }
 
         /// <summary>
-        /// GET api/cliente?cpf=12345678910
+        /// GET api/produtos?categoria=bebida
         /// </summary>
-        /// <param name="cpf"></param>
+        /// <param name="categoria"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<ClienteResponse> GetByCpf([FromQuery] string cpf)
+        public ActionResult<IEnumerable<ProdutoResponse>> GetByCategoria([FromQuery] string categoria)
         {
-            var response = _applicationServiceCliente.GetByCpf(cpf);
+            var response = _applicationServiceProduto.GetByCategoria(categoria);
 
-            return response.Id > 0 ? Ok(response) : NotFound();
+            return response.Count() > 0 ? Ok(response) : NotFound();
         }
 
         /// <summary>
-        /// POST api/cliente
+        /// POST api/produto
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Post([FromBody] ClienteRequest request)
+        public ActionResult Post([FromBody] ProdutoRequest request)
         {
             if (request == null) return BadRequest();
 
@@ -72,36 +73,34 @@ namespace SelfieBurguer.API.Controllers
                     string value = (string)property.GetValue(request);
 
                     if (string.IsNullOrEmpty(value))
-                    {
                         return BadRequest();
-                    }
                 }
             }
 
             string uri = HttpContext.Request.GetDisplayUrl();
-            ClienteResponse cliente = _applicationServiceCliente.Add(request);
+            _applicationServiceProduto.Add(request);
 
-            return Created(uri, cliente);
+            return Created(uri, request);
         }
 
         /// <summary>
-        /// PUT api/cliente/5
+        /// PUT api/produto/5
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public ActionResult Put([FromRoute] int id, [FromBody] ClienteRequest request)
+        public ActionResult Put([FromRoute] int id, [FromBody] ProdutoRequest request)
         {
             if (request == null || id == 0) return BadRequest();
 
-            _applicationServiceCliente.Update(id, request);
+            _applicationServiceProduto.Update(id, request);
 
-            return Ok($"Cliente {request.Nome} {request.Sobrenome} atualizado com sucesso!");
+            return Ok($"Produto {request.Nome} atualizado com sucesso!");
         }
 
         /// <summary>
-        /// DELETE api/cliente/5
+        /// DELETE api/produto/5
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
@@ -111,9 +110,9 @@ namespace SelfieBurguer.API.Controllers
         {
             if (id == 0) return BadRequest();
 
-            _applicationServiceCliente.Delete(id);
+            _applicationServiceProduto.Delete(id);
 
-            return Ok($"Cliente {id} removido com sucesso!");
+            return Ok($"Produto {id} removido com sucesso!");
         }
     }
 }

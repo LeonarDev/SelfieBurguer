@@ -1,4 +1,5 @@
-﻿using SelfieBurguer.Domain.Core.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using SelfieBurguer.Domain.Core.Interfaces.Repositories;
 using SelfieBurguer.Domain.Entities;
 using SelfieBurguer.Infrastructure.Data;
 using SelfieBurguer.Infrastructure.Data.Repositories;
@@ -14,9 +15,11 @@ namespace RestApiModeloDDD.Infrastructure.Data.Repositorys
             _sqlContext = sqlContext;
         }
 
-        public Cliente GetByEmail(string email)
+        public Cliente GetByCpf(string cpf)
         {
-            return _sqlContext.Set<Cliente>().Find(email);
+            return _sqlContext.Set<Cliente>()
+                .Include(c => c.Pedidos)
+                .FirstOrDefault(c => c.Cpf == cpf);
         }
     }
 }

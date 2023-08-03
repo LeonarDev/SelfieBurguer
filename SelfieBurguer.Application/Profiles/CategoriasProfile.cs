@@ -8,13 +8,7 @@ namespace SelfieBurguer.Application.Profiles
     {
         public CategoriasProfile()
         {
-            CategoriaMap();
-        }
-
-        private void CategoriaMap()
-        {
             CreateMap<Categoria, CategoriaResponse>();
-            CreateMap<IEnumerable<Categoria>, IEnumerable<CategoriaResponse>>();
         }
     }
 }

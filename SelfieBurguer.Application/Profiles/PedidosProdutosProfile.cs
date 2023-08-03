@@ -14,7 +14,6 @@ namespace SelfieBurguer.Application.Profiles
         private void PedidoMap()
         {
             CreateMap<PedidoProduto, PedidoProdutoResponse>();
-            CreateMap<IEnumerable<PedidoProduto>, IEnumerable<PedidoProdutoResponse>>();
         }
     }
 }

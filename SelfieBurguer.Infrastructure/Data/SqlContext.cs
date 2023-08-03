@@ -43,6 +43,12 @@ namespace SelfieBurguer.Infrastructure.Data
                 .HasForeignKey(pp => pp.ProdutoId);
         }
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseLazyLoadingProxies();
+        //    base.OnConfiguring(optionsBuilder);
+        //}
+
         public override int SaveChanges()
         {
             foreach (EntityEntry entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))

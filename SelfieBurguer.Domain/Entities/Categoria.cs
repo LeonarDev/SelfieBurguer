@@ -1,9 +1,12 @@
-﻿namespace SelfieBurguer.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SelfieBurguer.Domain.Entities
 {
+    [Table("Categoria")]
     public class Categoria
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
+        public int Id { get; protected set; }
+        public string Nome { get; protected set; }
 
         public Categoria(string nome)
         {

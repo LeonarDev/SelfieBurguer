@@ -1,12 +1,14 @@
-﻿namespace SelfieBurguer.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SelfieBurguer.Domain.Entities
 {
+    [Table("PedidoProduto")]
     public class PedidoProduto
     {
-        public int Id { get; set; }
-        public int PedidoId { get; set; }
-        public Pedido Pedido { get; set; }
-
-        public int ProdutoId { get; set; }
-        public Produto Produto { get; set; }
+        public int Id { get; protected set; }
+        public int PedidoId { get; protected set; }
+        public Pedido Pedido { get; protected set; }
+        public int ProdutoId { get; protected set; }
+        public Produto Produto { get; protected set; }
     }
 }

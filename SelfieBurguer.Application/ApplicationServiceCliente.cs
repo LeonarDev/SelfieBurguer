@@ -26,8 +26,6 @@ namespace SelfieBurguer.Application
 
         public void Update(int id, ClienteRequest request)
         {
-            // verificar necessidade da transaction (unitOfWork)
-
             Cliente cliente = _serviceCliente.GetById(id);
 
             cliente.SetNome(request.Nome);
@@ -56,9 +54,9 @@ namespace SelfieBurguer.Application
             return _mapper.Map<ClienteResponse>(cliente);
         }
 
-        public ClienteResponse GetByEmail(string email)
+        public ClienteResponse GetByCpf(string cpf)
         {
-            Cliente cliente = _serviceCliente.GetByEmail(email);
+            Cliente cliente = _serviceCliente.GetByCpf(cpf);
             return _mapper.Map<ClienteResponse>(cliente);
         }
     }

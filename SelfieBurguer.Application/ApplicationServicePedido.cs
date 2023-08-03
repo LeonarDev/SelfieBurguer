@@ -1,0 +1,67 @@
+﻿using AutoMapper;
+using SelfieBurguer.Application.Interfaces;
+using SelfieBurguer.DataTransfer.Cliente;
+using SelfieBurguer.DataTransfer.Pedido;
+using SelfieBurguer.Domain.Core.Interfaces.Services;
+using SelfieBurguer.Domain.Entities;
+
+namespace SelfieBurguer.Application
+{
+    public class ApplicationServicePedido : IApplicationServicePedido
+    {
+        private readonly IServicePedido _servicePedido;
+        private readonly IMapper _mapper;
+
+        public ApplicationServicePedido(IServicePedido servicePedido, IMapper mapper)
+        {
+            _servicePedido = servicePedido;
+            _mapper = mapper;
+        }
+
+        public IEnumerable<PedidoResponse> Listar()
+        {
+            //IEnumerable<Pedido> pedidos = _servicePedido.GetAll();
+            IEnumerable<Pedido> pedidos = _servicePedido.Listar();
+            return _mapper.Map<IEnumerable<PedidoResponse>>(pedidos);
+        }
+
+        //public void Add(PedidoRequest request)
+        //{
+        //    Pedido pedido = _servicePedido.Instantiate(request);
+
+        //    _servicePedido.Add(pedido);
+        //}
+
+        //public void Update(int id, PedidoRequest request)
+        //{
+        //    Pedido pedido = _servicePedido.GetById(id);
+
+        //    pedido.SetNome(request.Nome);
+        //    pedido.SetDescricao(request.Descricao);
+        //    pedido.SetObservacao(request.Observacao);
+        //    pedido.SetValor(request.Valor);
+        //    pedido.SetCategoria(request.CategoriaId);
+
+        //    _servicePedido.Update(pedido);
+        //}
+
+        //public void Delete(int id)
+        //{
+        //    Pedido pedido = _servicePedido.GetById(id);
+        //    _servicePedido.Delete(pedido);
+        //}
+
+        //public PedidoResponse GetById(int id)
+        //{
+        //    Pedido pedido = _servicePedido.GetById(id);
+        //    return _mapper.Map<PedidoResponse>(pedido);
+        //}
+
+        //public IEnumerable<PedidoResponse> GetByCategoria(string categoria)
+        //{
+        //    IEnumerable<Pedido> pedidos = _servicePedido.GetByCategoria(categoria);
+        //    return _mapper.Map<IEnumerable<PedidoResponse>>(pedidos);
+
+        //}
+    }
+}

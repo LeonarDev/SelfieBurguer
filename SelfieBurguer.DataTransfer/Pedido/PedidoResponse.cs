@@ -1,5 +1,4 @@
 ﻿using SelfieBurguer.DataTransfer.Cliente;
-using SelfieBurguer.DataTransfer.Produto;
 
 namespace SelfieBurguer.DataTransfer.Pedido
 {

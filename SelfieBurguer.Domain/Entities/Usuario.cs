@@ -1,14 +1,16 @@
 ﻿using SelfieBurguer.Domain.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SelfieBurguer.Domain.Entities
 {
+    [Table("Usuario")]
     public class Usuario
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public bool Ativo { get; set; }
-        public TipoUsuarioEnum TipoUsuario { get; set; }
+        public int Id { get; protected set; }
+        public string Email { get; protected set; }
+        public string Senha { get; protected set; }
+        public bool Ativo { get; protected set; }
+        public TipoUsuarioEnum TipoUsuario { get; protected set; }
 
         public Usuario(string email, string senha, TipoUsuarioEnum tipoUsuario)
         {
