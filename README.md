@@ -68,7 +68,7 @@ CREATE TABLE PedidoProduto (
     CONSTRAINT FK_PedidoProduto_Produto FOREIGN KEY (ProdutoId) REFERENCES Produto (Id)
 );
 
--- INSERTS
+-- CARGA INICIAL
 INSERT INTO Cliente(Nome, Sobrenome, Email, Ativo, DataCadastro) VALUES('Leonardo', 'Majevski', 'majevski@mail.com', 1, '20120618 10:34:19 AM');
 INSERT INTO Cliente(Nome, Sobrenome, Email, Ativo, DataCadastro) VALUES('Laísa', 'Motta', 'laisa@mail.com', 1, '20120618 10:34:19 AM');
 INSERT INTO Categoria(Nome) VALUES('Lanche');
@@ -81,7 +81,7 @@ INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Bro
 INSERT INTO Pedido(DataCriacao, Status, ClienteId,  ValorTotal) VALUES ('20120618 10:34:19 AM', 1, 1, 20);
 INSERT INTO PedidoProduto(PedidoId, ProdutoId) VALUES (1, 1);
 
--- CONSULTAS
+-- EVITAR A FADIGA
 SELECT * FROM Cliente;
 SELECT * FROM Categoria;
 SELECT * FROM Produto P inner join Categoria C on P.CategoriaId = C.Id;
