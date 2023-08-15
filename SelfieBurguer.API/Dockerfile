@@ -25,4 +25,8 @@ RUN dotnet publish "SelfieBurguer.API.csproj" -c Release -o /app/publish /p:UseA
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+COPY cert.pem /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+
 ENTRYPOINT ["dotnet", "SelfieBurguer.API.dll"]

@@ -19,15 +19,18 @@ namespace SelfieBurguer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connection = Configuration["SqlConnection:SqlConnectionString"];
-            //services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
+            var connection = Configuration["SqlConnection:SqlConnectionString"];
+            services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
 
-            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
-            var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbPassword};";
+            //var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            //var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            //var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+            var dbHost = "selfieburguerdb";
+            var dbName = "SelfieBurguerApp";
+            var dbPassword = "YourStrong@Passw0rd";
+            var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=SA;Password=YourStrong@Passw0rd;TrustServerCertificate=True;";
             
-            services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(connectionString));
+            //services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(connectionString));
 
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup).Assembly);

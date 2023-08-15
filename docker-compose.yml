@@ -8,12 +8,19 @@ services:
     container_name: app-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
-      - 8002:1433
+      - 1433:1433
     environment:
       - ACCEPT_EULA=Y
-      - AGENT_ENABLED=Y
-      - TLS_CERTIFICATE=0
       - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Developer
+      - MSSQL_DATA_DIR=/var/opt/mssql/data
+      - MSSQL_LOG_DIR=/var/opt/mssql/log
+      - MSSQL_BACKUP_DIR=/var/opt/mssql/backup
+      - MSSQL_SSL_KEY=/var/opt/mssql/certs/key.pem
+      - MSSQL_SSL_CERT=/var/opt/mssql/certs/cert.pem
+    volumes:
+      - ./key.pem:/var/opt/mssql/certs/key.pem
+      - ./cert.pem:/var/opt/mssql/certs/cert.pem
     networks:
       - selfieburguerapp
   
