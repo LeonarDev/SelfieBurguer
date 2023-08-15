@@ -1,0 +1,44 @@
+version: '3.4'
+
+networks:
+  selfieburguerapp:
+
+services:
+  selfieburguerdb:
+    container_name: app-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8002:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - AGENT_ENABLED=Y
+      - TLS_CERTIFICATE=0
+      - SA_PASSWORD=YourStrong@Passw0rd
+    networks:
+      - selfieburguerapp
+  
+  mssqltools:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - selfieburguerdb
+    volumes:
+      - ./init.sql:/tmp/init.sql
+      - ./init.sh:/tmp/init.sh
+    command: /bin/bash ./tmp/init.sh
+
+  selfieburguer.api:
+    container_name: selfie-burguer-app
+    image: ${DOCKER_REGISTRY-}selfieburguerapi
+    build:
+      context: .
+      dockerfile: SelfieBurguer.API/Dockerfile
+    ports:
+      - 8001:80
+    depends_on:
+      - selfieburguerdb
+    environment:
+      - DB_HOST=selfieburguerdb
+      - DB_NAME=SelfieBurguerApp
+      - DB_SA_PASSWORD=YourStrong@Passw0rd
+    networks:
+      - selfieburguerapp

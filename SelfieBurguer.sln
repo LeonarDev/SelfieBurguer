@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfieBurguer.Domain.Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfieBurguer.Infrastructure", "SelfieBurguer.Infrastructure\SelfieBurguer.Infrastructure.csproj", "{B453172C-463A-4161-9E48-D053F3204178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfieBurguer.DataTransfer", "SelfieBurguer.DataTransfer\SelfieBurguer.DataTransfer.csproj", "{46D5BC2E-3B96-4992-880E-6AF1EE2F36AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfieBurguer.DataTransfer", "SelfieBurguer.DataTransfer\SelfieBurguer.DataTransfer.csproj", "{46D5BC2E-3B96-4992-880E-6AF1EE2F36AF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{58007C40-38F8-4344-84BB-71B454F6ACB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{46D5BC2E-3B96-4992-880E-6AF1EE2F36AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D5BC2E-3B96-4992-880E-6AF1EE2F36AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D5BC2E-3B96-4992-880E-6AF1EE2F36AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58007C40-38F8-4344-84BB-71B454F6ACB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58007C40-38F8-4344-84BB-71B454F6ACB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58007C40-38F8-4344-84BB-71B454F6ACB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58007C40-38F8-4344-84BB-71B454F6ACB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

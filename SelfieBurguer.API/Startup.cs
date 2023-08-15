@@ -19,9 +19,16 @@ namespace SelfieBurguer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["SqlConnection:SqlConnectionString"];
+            //var connection = Configuration["SqlConnection:SqlConnectionString"];
+            //services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
 
-            services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
+            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+            var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbPassword};";
+            
+            services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(connectionString));
+
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
