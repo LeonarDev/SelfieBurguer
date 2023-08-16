@@ -40,7 +40,7 @@ Abra seu navegador e acesse a documentação da aplicação pela url `http://loc
 <br>
 <br>
 
-##### ⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows) ou `./ambiente-parar.sh` (Linux e Mac) no terminal.
+##### ⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows) ou `./ambiente-parar.sh` (Linux e Mac).
 
 ```sh
 # Os arquivos de script "ambiente-parar.ps1" e "ambiente-parar.sh" executam:
