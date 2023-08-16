@@ -19,18 +19,17 @@ namespace SelfieBurguer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["SqlConnection:SqlConnectionString"];
-            services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
+            // Utiliza a connectionString fornecida no appsettings.json
+            //var connection = Configuration["SqlConnection:SqlConnectionString"];
+            //services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
 
-            //var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            //var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            //var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
-            var dbHost = "selfieburguerdb";
-            var dbName = "SelfieBurguerApp";
-            var dbPassword = "YourStrong@Passw0rd";
-            var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=SA;Password=YourStrong@Passw0rd;TrustServerCertificate=True;";
+            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
             
-            //services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(connectionString));
+            var connectionString = $"Server={dbHost};Database=master;User ID=SA;Password={dbPassword};TrustServerCertificate=True;";
+
+            services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(connectionString));
 
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup).Assembly);
@@ -44,7 +43,6 @@ namespace SelfieBurguer
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                //options.JsonSerializerOptions.IgnoreNullValues = true;
                 options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
         }
@@ -68,7 +66,7 @@ namespace SelfieBurguer
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Selfie Burguer");
             });
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 

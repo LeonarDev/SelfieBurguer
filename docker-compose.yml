@@ -4,34 +4,36 @@ networks:
   selfieburguerapp:
 
 services:
-  selfieburguerdb:
-    container_name: app-db
+  mssqldata:
     image: mcr.microsoft.com/mssql/server:2019-latest
+    networks: 
+      - selfieburguerapp
+    entrypoint: /bin/bash
+
+  selfieburguerdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssqlserver
+    hostname: mssqls-server
     ports:
       - 1433:1433
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
-      - MSSQL_PID=Developer
-      - MSSQL_DATA_DIR=/var/opt/mssql/data
-      - MSSQL_LOG_DIR=/var/opt/mssql/log
-      - MSSQL_BACKUP_DIR=/var/opt/mssql/backup
-      - MSSQL_SSL_KEY=/var/opt/mssql/certs/key.pem
-      - MSSQL_SSL_CERT=/var/opt/mssql/certs/cert.pem
     volumes:
-      - ./key.pem:/var/opt/mssql/certs/key.pem
-      - ./cert.pem:/var/opt/mssql/certs/cert.pem
+      - /var/opt/mssql
+      - ./:/usr/src/app 
+    working_dir: /usr/src/app 
+    command: sh -c ' chmod +x ./entrypoint.sh; ./entrypoint.sh & /opt/mssql/bin/sqlservr;'
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: YourStrong@Passw0rd
+      DATABASE_NAME: master
+      MSSQL_DATA_DIR: /var/opt/mssql/data
+      MSSQL_LOG_DIR: /var/opt/mssql/log
+      MSSQL_BACKUP_DIR: /var/opt/mssql/backup
+      MSSQL_SSL_KEY: /var/opt/mssql/certs/key.pem
+      MSSQL_SSL_CERT: /var/opt/mssql/certs/cert.pem
     networks:
       - selfieburguerapp
-  
-  mssqltools:
-    image: mcr.microsoft.com/mssql-tools
-    depends_on:
-      - selfieburguerdb
-    volumes:
-      - ./init.sql:/tmp/init.sql
-      - ./init.sh:/tmp/init.sh
-    command: /bin/bash ./tmp/init.sh
+    volumes_from:
+      - mssqldata
 
   selfieburguer.api:
     container_name: selfie-burguer-app

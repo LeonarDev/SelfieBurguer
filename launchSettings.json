@@ -5,7 +5,10 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "selfieburguer.api": "StartDebugging"
-      }
+      },
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:8001"
     }
   }
 }

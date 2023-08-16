@@ -1,47 +1,43 @@
-﻿CREATE DATABASE selfie_burguer
+﻿USE master;
 GO
 
-USE selfie_burguer
-GO
-
--- CRIA TABELAS
 CREATE TABLE Usuario (
 	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	Email varchar(255) NOT NULL,
-	Senha varchar(255) NOT NULL,
+	Email VARCHAR(255) NOT NULL,
+	Senha VARCHAR(255) NOT NULL,
 	Ativo BIT DEFAULT 1,
 	TipoUsuario INT,
-)
+);
 GO
 
 CREATE TABLE Categoria (
 	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	Nome varchar(255) NOT NULL,
-)
+	Nome VARCHAR(255) NOT NULL,
+);
 GO
 
 CREATE TABLE Cliente (
 	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	Nome varchar(255) NOT NULL,
-	Sobrenome varchar(255) NOT NULL,
-	Email varchar(255) NOT NULL,
-	Cpf varchar(255) NOT NULL,
+	Nome VARCHAR(255) NOT NULL,
+	Sobrenome VARCHAR(255) NOT NULL,
+	Email VARCHAR(255) NOT NULL,
+	Cpf VARCHAR(255) NOT NULL,
 	Ativo BIT DEFAULT 1,
 	DataCadastro DateTime NOT NULL,
-)
+);
 GO
 
 CREATE TABLE Produto (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
-    Nome varchar(255) NOT NULL,
-    Descricao varchar(255),
-    Observacao varchar(255) NULL,
-    Valor float NOT NULL,
+    Nome VARCHAR(255) NOT NULL,
+    Descricao VARCHAR(255),
+    Observacao VARCHAR(255) NULL,
+    Valor FLOAT NOT NULL,
     Disponivel BIT DEFAULT 1,
-    Imagem varbinary(max),
+    Imagem VARBINARY(max),
     CategoriaId INT NOT NULL,
     FOREIGN KEY (CategoriaId) REFERENCES Categoria(Id)
-)
+);
 GO
 
 CREATE TABLE Pedido (
@@ -50,9 +46,9 @@ CREATE TABLE Pedido (
 	DataFinalizacao DateTime NULL,
 	Status INT NOT NULL,
 	ClienteId INT NOT NULL,
-	ValorTotal float,
+	ValorTotal FLOAT,
 	FOREIGN KEY (ClienteId) REFERENCES Cliente (Id)
-)
+);
 GO
 
 CREATE TABLE PedidoProduto (
@@ -61,7 +57,7 @@ CREATE TABLE PedidoProduto (
     ProdutoId INT NOT NULL,
     CONSTRAINT FK_PedidoProduto_Pedido FOREIGN KEY (PedidoId) REFERENCES Pedido (Id),
     CONSTRAINT FK_PedidoProduto_Produto FOREIGN KEY (ProdutoId) REFERENCES Produto (Id)
-)
+);
 GO
 
 INSERT INTO Cliente(Nome, Sobrenome, Email, Cpf, Ativo, DataCadastro) VALUES('Gian Claudio', 'Danvame', 'rocky@balboa.com', '12345678900', 1, '20120618 10:34:19 AM')
@@ -74,5 +70,5 @@ INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Big
 INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Total-Cola', 'Bebida gaseificada sabor Cola', 5.0, 1, 2)
 INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Brownie', 'Bolo de chocolate solado', 10.0, 1, 3)
 INSERT INTO Pedido(DataCriacao, Status, ClienteId,  ValorTotal) VALUES ('20120618 10:34:19 AM', 1, 1, 20)
-INSERT INTO PedidoProduto(PedidoId, ProdutoId) VALUES (1, 1)
+INSERT INTO PedidoProduto(PedidoId, ProdutoId) VALUES (1, 1);
 GO

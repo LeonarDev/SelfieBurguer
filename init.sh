@@ -1,1 +1,0 @@
-﻿/opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P YourStrong@Passw0rd -d master -i /tmp/init.sql
