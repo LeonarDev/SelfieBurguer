@@ -1,21 +1,24 @@
 ﻿# SelfieBurguer API
 
-A SelfieBurguer API tem a finalidade de realizar o autoatendimento do cliente, para que possa realizar seus pedidos sem a necessidade de interação com um atendente.
+A SelfieBurguer API é uma aplicação elaborada para o cliente realizar o autoatendimento do seu pedido sem a necessidade de interação com um atendente real.
 
-Técnicamente, este projeto é impulsionado pelo Docker Compose, no qual constrói toda a estrutura responsável pela execução da aplicação localmente, iniciando com o banco de dados SQL Server, em seguida cria as tabelas e por fim constrói os projetos em .NET 6, seguindo uma abordagem de Domain Driven Design. 
+## Stack
 
-A proposta é manter uma arquitetura limpa e escalável, que reflete constantemente as tendências atuais da Arquitetura de Software.
+Técnicamente, este projeto é impulsionado pelo Docker Compose, no qual constrói a estrutura responsável pela execução da aplicação localmente com os containers:
+- SQL Server
+- Carga de dados para a construção do banco
+- Web-Api em .NET 6 implementada com arquitetura hexagonal e Domain Driven Design
+
+A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável, refletindo constantemente as tendências mais modernas no contexto da Arquitetura de Software.
 
 <br>
 
 > 🚧 Projeto em construção, porém funcional. Confira aqui em baixo as formas de executá-lo.
-
-<br>
 <hr>
 <br>
 
 ## 👨‍💻 Instruções de execução no terminal
-Após clonar o projeto, acesse o diretório raiz e abra o terminal de sua preferência.
+Abra o terminal de sua preferência, clone o projeto e acesse o diretório raiz.
 
 Execute o comando `./ambiente-iniciar.ps1` (Windows) ou `./ambiente-iniciar.sh` (Linux e Mac) para buildar a aplicação:
 
@@ -40,7 +43,7 @@ Abra seu navegador e acesse a documentação da aplicação pela url `http://loc
 <br>
 <br>
 
-##### ⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows) ou `./ambiente-parar.sh` (Linux e Mac).
+⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows) ou `./ambiente-parar.sh` (Linux e Mac).
 
 ```sh
 # Os arquivos de script "ambiente-parar.ps1" e "ambiente-parar.sh" executam:
@@ -50,8 +53,6 @@ docker-compose -f .\docker-compose.yml down ; docker rm $(docker ps -q --filter 
 <div style="text-align:center;">
 	<img src="./assets/3.png">
 </div>
-
-<br>
 <hr>
 <br>
 
