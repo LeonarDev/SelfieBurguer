@@ -15,7 +15,8 @@ A proposta é manter uma arquitetura limpa e escalável, que reflete constanteme
 <br>
 
 ## 👨‍💻 Instruções de execução no terminal
-Acesse a raiz do projeto e abra o terminal de sua preferência.
+Após clonar o projeto, acesse o diretório raiz e abra o terminal de sua preferência.
+
 Execute o comando `./ambiente-iniciar.ps1` (Windows) ou `./ambiente-iniciar.sh` (Linux e Mac) para buildar a aplicação:
 
 ```sh
