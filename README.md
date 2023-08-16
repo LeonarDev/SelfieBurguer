@@ -1,90 +1,83 @@
-﻿# SelfieBurguer
+﻿# SelfieBurguer API
 
-### Instancia do banco:
-```shel
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_AGENT_ENABLED=Y" -e "MSSQL_TLS_CERTIFICATE=0" -e "MSSQL_SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d mcr.microsoft.com/mssql/server:2022-latest
-```
+A SelfieBurguer API tem a finalidade de realizar o autoatendimento do cliente, para que possa realizar seus pedidos sem a necessidade de interação com um atendente.
+
+Técnicamente, este projeto é impulsionado pelo Docker Compose, no qual constrói toda a estrutura responsável pela execução da aplicação localmente, iniciando com o banco de dados SQL Server, em seguida cria as tabelas e por fim constrói os projetos em .NET 6, seguindo uma abordagem de Domain Driven Design. 
+
+A proposta é manter uma arquitetura limpa e escalável, que reflete constantemente as tendências atuais da Arquitetura de Software.
 
 <br>
 
-### Tabelas
+> 🚧 Projeto em construção, porém funcional. Confira aqui em baixo as formas de executá-lo.
 
-```SQL
--- CRIA E UTILIZA O BANCO DE DADOS
-CREATE DATABASE selfie_burguer;
-USE selfie_burguer;
+<br>
+<hr>
+<br>
 
--- CRIA TABELAS
-CREATE TABLE Usuario (
-	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	Email varchar(255) NOT NULL,
-	Senha varchar(255) NOT NULL,
-	Ativo BIT DEFAULT 1,
-	TipoUsuario INT,
-);
+## 👨‍💻 Instruções de execução no vscode
+Acesse a raiz do projeto e abra o terminal de sua preferência.
+Execute o comando `./ambiente-iniciar.ps1` (Windows) ou `./ambiente-iniciar.sh` (Linux e Mac) para buildar a aplicação:
 
-CREATE TABLE Categoria (
-	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	Nome varchar(255) NOT NULL,
-);
-
-CREATE TABLE Cliente (
-	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	Nome varchar(255) NOT NULL,
-	Sobrenome varchar(255) NOT NULL,
-	Email varchar(255) NOT NULL,
-	Cpf varchar(255) NOT NULL,
-	Ativo BIT DEFAULT 1,
-	DataCadastro DateTime NOT NULL,
-);
-
-CREATE TABLE Produto (
-    Id INT NOT NULL IDENTITY PRIMARY KEY,
-    Nome varchar(255) NOT NULL,
-    Descricao varchar(255),
-    Observacao varchar(255) NULL,
-    Valor float NOT NULL,
-    Disponivel BIT DEFAULT 1,
-    Imagem varbinary(max),
-    CategoriaId INT NOT NULL,
-    FOREIGN KEY (CategoriaId) REFERENCES Categoria(Id)
-);
-
-CREATE TABLE Pedido (
-	Id INT NOT NULL IDENTITY PRIMARY KEY,
-	DataCriacao DateTime NOT NULL,
-	DataFinalizacao DateTime NULL,
-	Status INT NOT NULL,
-	ClienteId INT NOT NULL,
-	ValorTotal float,
-	FOREIGN KEY (ClienteId) REFERENCES Cliente (Id)
-);
-
-CREATE TABLE PedidoProduto (
-    Id INT NOT NULL IDENTITY PRIMARY KEY,
-    PedidoId INT NOT NULL,
-    ProdutoId INT NOT NULL,
-    CONSTRAINT FK_PedidoProduto_Pedido FOREIGN KEY (PedidoId) REFERENCES Pedido (Id),
-    CONSTRAINT FK_PedidoProduto_Produto FOREIGN KEY (ProdutoId) REFERENCES Produto (Id)
-);
-
--- CARGA INICIAL
-INSERT INTO Cliente(Nome, Sobrenome, Email, Ativo, DataCadastro) VALUES('Leonardo', 'Majevski', 'majevski@mail.com', 1, '20120618 10:34:19 AM');
-INSERT INTO Cliente(Nome, Sobrenome, Email, Ativo, DataCadastro) VALUES('Laísa', 'Motta', 'laisa@mail.com', 1, '20120618 10:34:19 AM');
-INSERT INTO Categoria(Nome) VALUES('Lanche');
-INSERT INTO Categoria(Nome) VALUES('Bebida');
-INSERT INTO Categoria(Nome) VALUES('Sobremesa');
-INSERT INTO Categoria(Nome) VALUES('Combo');
-INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Cheese-Burguer', 'Pão, carne de hamburguer, queijo prato', 20.0, 1, 1);
-INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Total-Cola', 'Bebida gaseificada sabor Cola', 5.0, 1, 2);
-INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Brownie', 'Bolo de chocolate solado', 10.0, 1, 3);
-INSERT INTO Pedido(DataCriacao, Status, ClienteId,  ValorTotal) VALUES ('20120618 10:34:19 AM', 1, 1, 20);
-INSERT INTO PedidoProduto(PedidoId, ProdutoId) VALUES (1, 1);
-
--- EVITAR A FADIGA
-SELECT * FROM Cliente;
-SELECT * FROM Categoria;
-SELECT * FROM Produto P inner join Categoria C on P.CategoriaId = C.Id;
-SELECT * FROM Pedido PE inner join Cliente CL on CL.Id = PE.ClienteId inner join PedidoProduto PP on PE.Id = PP.PedidoId inner join Produto PR on PR.Id = PP.ProdutoId;
-
+```sh
+# Os arquivos de script "ambiente-iniciar.ps1" e "ambiente-iniciar.sh" executam:
+docker-compose -f .\docker-compose.yml up
 ```
+
+<div style="text-align:center;">
+	<img src="./assets/1.png">
+</div>
+
+<br>
+<br>
+
+Abra seu navegador e acesse a documentação da aplicação pela url `http://localhost:8001/swagger`.
+
+<div style="text-align:center;">
+	<img src="./assets/2.png">
+</div>
+
+<br>
+<br>
+
+##### ⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows) ou `./ambiente-parar.sh` (Linux e Mac) no terminal.
+
+```sh
+# Os arquivos de script "ambiente-parar.ps1" e "ambiente-parar.sh" executam:
+docker-compose -f .\docker-compose.yml down ; docker rm $(docker ps -q --filter status=exited) ;  docker ps -a
+```
+
+<div style="text-align:center;">
+	<img src="./assets/3.png">
+</div>
+
+<br>
+<hr>
+<br>
+
+## 🆚 Instruções de execução no visual studio
+No Gerenciador de Soluções, localize o arquivo `docker-compose`:
+<div style="text-align:center;">
+	<img src="./assets/4.png">
+</div>
+
+<br>
+<br>
+
+
+Clique com o botão direito em cima dele e marque a opção "Definir projeto de inicialização":
+<div style="text-align:center;">
+	<img src="./assets/5.png">
+</div>
+
+<br>
+<br>
+
+Em seguida, clique no ícone de "play" verde do Docker Compose, localizado no centro superior da IDE:
+<div style="text-align:center;">
+	<img src="./assets/6.png">
+</div>
+
+<br>
+<br>
+
+Aguarde alguns instantes até que o navegador abra automaticamente o swagger da aplicação.
