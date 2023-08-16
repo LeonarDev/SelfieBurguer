@@ -15,18 +15,19 @@ namespace SelfieBurguer.Domain.Entities
         public DateTime DataCadastro { get; protected set; }
         public IEnumerable<Pedido> Pedidos { get; protected set; } = new List<Pedido>();
 
-        public Cliente(string nome, string sobrenome, string email)
+        public Cliente(string nome, string sobrenome, string email, string cpf)
         {
             SetNome(nome);
             SetSobrenome(sobrenome);
             SetEmail(email);
+            SetCpf(cpf);
             SetAtivo(true);
             SetDataCadastro(DateTime.Now);
         }
 
         public void SetNome(string nome)
         {
-            if (nome.Trim().Length < 4)
+            if (nome.Trim().Length < 3)
                 throw new Exception("O nome deve conter ao menos 3 caracteres");
 
             Nome = nome;
@@ -34,7 +35,7 @@ namespace SelfieBurguer.Domain.Entities
 
         public void SetSobrenome(string sobrenome)
         {
-            if (sobrenome.Trim().Length < 4)
+            if (sobrenome.Trim().Length < 3)
                 throw new Exception("O sobrenome deve conter ao menos 3 caracteres");
 
             Sobrenome = sobrenome;
@@ -49,6 +50,14 @@ namespace SelfieBurguer.Domain.Entities
                 throw new Exception("O email digitado não é válido");
 
             Email = email;
+        }
+
+        public void SetCpf(string cpf)
+        {
+            if (cpf.Trim().Length != 11)
+                throw new Exception("O Cpf é inválido");
+
+            Cpf = cpf;
         }
 
         public void SetAtivo(bool ativo)

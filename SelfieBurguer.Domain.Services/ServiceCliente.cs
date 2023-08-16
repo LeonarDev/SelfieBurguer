@@ -21,7 +21,7 @@ namespace SelfieBurguer.Domain.Services
 
         public Cliente Instantiate(ClienteRequest request)
         {
-            Cliente cliente = new(request.Nome, request.Sobrenome, request.Email);
+            Cliente cliente = new(request.Nome, request.Sobrenome, request.Email, request.Cpf);
 
             return cliente;
         }
