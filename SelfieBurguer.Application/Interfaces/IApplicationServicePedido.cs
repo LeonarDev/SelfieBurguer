@@ -7,6 +7,6 @@ namespace SelfieBurguer.Application.Interfaces
         void Add(PedidoRequest request);
         void AlterarStatus(int id, PedidoRequest request);
         IEnumerable<PedidoResponse> Listar();
-        PedidoResponse GetById(int id);
+        PedidoResponse RecuperarPorId(int id);
     }
 }

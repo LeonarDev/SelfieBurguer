@@ -27,7 +27,7 @@ namespace SelfieBurguer.Application
 
         public void Update(int id, ProdutoRequest request)
         {
-            Produto produto = _serviceProduto.GetById(id);
+            Produto produto = _serviceProduto.RecuperarPorId(id);
 
             produto.SetNome(request.Nome);
             produto.SetDescricao(request.Descricao);
@@ -40,25 +40,25 @@ namespace SelfieBurguer.Application
 
         public void Delete(int id)
         {
-            Produto produto = _serviceProduto.GetById(id);
+            Produto produto = _serviceProduto.RecuperarPorId(id);
             _serviceProduto.Delete(produto);
         }
 
-        public IEnumerable<ProdutoResponse> GetAll()
+        public IEnumerable<ProdutoResponse> RecuperarTodos()
         {
-            IEnumerable<Produto> produtos = _serviceProduto.GetAll();
+            IEnumerable<Produto> produtos = _serviceProduto.RecuperarTodos();
             return _mapper.Map<IEnumerable<ProdutoResponse>>(produtos);
         }
 
-        public ProdutoResponse GetById(int id)
+        public ProdutoResponse RecuperarPorId(int id)
         {
-            Produto produto = _serviceProduto.GetById(id);
+            Produto produto = _serviceProduto.RecuperarPorId(id);
             return _mapper.Map<ProdutoResponse>(produto);
         }
 
-        public IEnumerable<ProdutoResponse> GetByCategoria(string categoria)
+        public IEnumerable<ProdutoResponse> RecuperarPorCategoria(string categoria)
         {
-            IEnumerable<Produto> produtos = _serviceProduto.GetByCategoria(categoria);
+            IEnumerable<Produto> produtos = _serviceProduto.RecuperarPorCategoria(categoria);
             return _mapper.Map<IEnumerable<ProdutoResponse>>(produtos);
 
         }

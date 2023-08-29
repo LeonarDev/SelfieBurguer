@@ -21,9 +21,9 @@ namespace SelfieBurguer.Domain.Services
             return produto;
         }
 
-        public IEnumerable<Produto> GetByCategoria(string categoria)
+        public IEnumerable<Produto> RecuperarPorCategoria(string categoria)
         {
-            return _repositoryProduto.GetByCategoria(categoria);
+            return _repositoryProduto.RecuperarPorCategoria(categoria);
         }
     }
 }

@@ -51,12 +51,12 @@ namespace SelfieBurguer.Infrastructure.Data.Repositories
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> RecuperarTodos()
         {
             return _sqlContext.Set<TEntity>().ToList();
         }
 
-        public TEntity GetById(int id)
+        public TEntity RecuperarPorId(int id)
         {
             return _sqlContext.Set<TEntity>().Find(id);
         }

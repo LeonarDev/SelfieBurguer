@@ -22,9 +22,9 @@ namespace SelfieBurguer.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("/api/clientes")]
-        public ActionResult<IEnumerable<ClienteResponse>> GetAll()
+        public ActionResult<IEnumerable<ClienteResponse>> RecuperarTodos()
         {
-            var response = _applicationServiceCliente.GetAll();
+            var response = _applicationServiceCliente.RecuperarTodos();
 
             return Ok(response);
         }
@@ -35,9 +35,9 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<ClienteResponse> GetById([FromRoute] int id)
+        public ActionResult<ClienteResponse> RecuperarPorId([FromRoute] int id)
         {
-            var response = _applicationServiceCliente.GetById(id);
+            var response = _applicationServiceCliente.RecuperarPorId(id);
 
             return response.Id > 0 ? Ok(response) : NotFound();
         }
@@ -48,9 +48,9 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="cpf"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<ClienteResponse> GetByCpf([FromQuery] string cpf)
+        public ActionResult<ClienteResponse> RecuperarPorCpf([FromQuery] string cpf)
         {
-            var response = _applicationServiceCliente.GetByCpf(cpf);
+            var response = _applicationServiceCliente.RecuperarPorCpf(cpf);
 
             return response.Id > 0 ? Ok(response) : NotFound();
         }
@@ -61,7 +61,7 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Post([FromBody] ClienteRequest request)
+        public ActionResult Adicionar([FromBody] ClienteRequest request)
         {
             if (request == null) return BadRequest();
 
@@ -79,6 +79,7 @@ namespace SelfieBurguer.API.Controllers
             }
 
             string uri = HttpContext.Request.GetDisplayUrl();
+
             ClienteResponse cliente = _applicationServiceCliente.Add(request);
 
             return Created(uri, cliente);
@@ -91,7 +92,7 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public ActionResult Put([FromRoute] int id, [FromBody] ClienteRequest request)
+        public ActionResult Editar([FromRoute] int id, [FromBody] ClienteRequest request)
         {
             if (request == null || id == 0) return BadRequest();
 
@@ -107,7 +108,7 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public ActionResult Delete([FromRoute] int id)
+        public ActionResult Deletar([FromRoute] int id)
         {
             if (id == 0) return BadRequest();
 

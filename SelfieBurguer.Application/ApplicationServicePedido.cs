@@ -33,9 +33,9 @@ namespace SelfieBurguer.Application
             _servicePedido.AlterarStatus(id, request);
         }
 
-        public PedidoResponse GetById(int id)
+        public PedidoResponse RecuperarPorId(int id)
         {
-            Pedido pedido = _servicePedido.GetById(id);
+            Pedido pedido = _servicePedido.RecuperarPorId(id);
             return _mapper.Map<PedidoResponse>(pedido);
         }
 
@@ -54,7 +54,7 @@ namespace SelfieBurguer.Application
 
         //public void Update(int id, PedidoRequest request)
         //{
-        //    Pedido pedido = _servicePedido.GetById(id);
+        //    Pedido pedido = _servicePedido.RecuperarPorId(id);
 
         //    pedido.SetNome(request.Nome);
         //    pedido.SetDescricao(request.Descricao);
@@ -67,19 +67,19 @@ namespace SelfieBurguer.Application
 
         //public void Delete(int id)
         //{
-        //    Pedido pedido = _servicePedido.GetById(id);
+        //    Pedido pedido = _servicePedido.RecuperarPorId(id);
         //    _servicePedido.Delete(pedido);
         //}
 
-        //public PedidoResponse GetById(int id)
+        //public PedidoResponse RecuperarPorId(int id)
         //{
-        //    Pedido pedido = _servicePedido.GetById(id);
+        //    Pedido pedido = _servicePedido.RecuperarPorId(id);
         //    return _mapper.Map<PedidoResponse>(pedido);
         //}
 
-        //public IEnumerable<PedidoResponse> GetByCategoria(string categoria)
+        //public IEnumerable<PedidoResponse> RecuperarPorCategoria(string categoria)
         //{
-        //    IEnumerable<Pedido> pedidos = _servicePedido.GetByCategoria(categoria);
+        //    IEnumerable<Pedido> pedidos = _servicePedido.RecuperarPorCategoria(categoria);
         //    return _mapper.Map<IEnumerable<PedidoResponse>>(pedidos);
 
         //}

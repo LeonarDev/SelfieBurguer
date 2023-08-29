@@ -23,7 +23,7 @@ namespace SelfieBurguer.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("/api/pedidos")]
-        public ActionResult<IEnumerable<PedidoResponse>> GetAll()
+        public ActionResult<IEnumerable<PedidoResponse>> RecuperarTodos()
         {
             var response = _applicationServicePedido.Listar();
 
@@ -36,9 +36,9 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<PedidoResponse> GetById([FromRoute] int id)
+        public ActionResult<PedidoResponse> RecuperarPorId([FromRoute] int id)
         {
-            var response = _applicationServicePedido.GetById(id);
+            var response = _applicationServicePedido.RecuperarPorId(id);
 
             return response.Id > 0 ? Ok(response) : NotFound();
         }

@@ -14,9 +14,9 @@ namespace SelfieBurguer.Domain.Services
             _repositoryCliente = repositoryCliente;
         }
 
-        public Cliente GetByCpf(string cpf)
+        public Cliente RecuperarPorCpf(string cpf)
         {
-            return _repositoryCliente.GetByCpf(cpf);
+            return _repositoryCliente.RecuperarPorCpf(cpf);
         }
 
         public Cliente Instantiate(ClienteRequest request)

@@ -25,7 +25,7 @@ namespace SelfieBurguer.Domain.Services
             {
                 foreach (int id in produtosIds)
                 {
-                    Produto produto = _repositoryProduto.GetById(id);
+                    Produto produto = _repositoryProduto.RecuperarPorId(id);
 
                     PedidoProduto pedidoProduto = new(pedido.Id, produto.Id);
 
@@ -36,7 +36,7 @@ namespace SelfieBurguer.Domain.Services
 
         public void AlterarStatus(int id, PedidoRequest request) // testar
         {
-            Pedido pedido = _repositoryPedido.GetById(id);
+            Pedido pedido = _repositoryPedido.RecuperarPorId(id);
 
             if (request.Status != null)
             {

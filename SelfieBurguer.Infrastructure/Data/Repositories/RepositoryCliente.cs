@@ -15,7 +15,7 @@ namespace RestApiModeloDDD.Infrastructure.Data.Repositorys
             _sqlContext = sqlContext;
         }
 
-        public Cliente GetByCpf(string cpf)
+        public Cliente RecuperarPorCpf(string cpf)
         {
             return _sqlContext.Set<Cliente>()
                 .Include(c => c.Pedidos)

@@ -5,7 +5,7 @@ namespace SelfieBurguer.Domain.Core.Interfaces.Services
 {
     public interface IServiceProduto : IServiceBase<Produto>
     {
-        IEnumerable<Produto> GetByCategoria(string categoria);
+        IEnumerable<Produto> RecuperarPorCategoria(string categoria);
         Produto Instantiate(ProdutoRequest request);
     }
 }

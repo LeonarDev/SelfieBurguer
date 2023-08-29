@@ -7,7 +7,7 @@ namespace SelfieBurguer.Application.Interfaces
         void Add(CategoriaRequest obj);
         void Update(CategoriaRequest obj);
         void Delete(CategoriaRequest obj);
-        IEnumerable<CategoriaResponse> GetAll();
-        CategoriaResponse GetById(int id);
+        IEnumerable<CategoriaResponse> RecuperarTodos();
+        CategoriaResponse RecuperarPorId(int id);
     }
 }

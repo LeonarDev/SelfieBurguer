@@ -10,9 +10,9 @@ namespace SelfieBurguer.Application.Interfaces
 
         void Delete(int id);
 
-        IEnumerable<ProdutoResponse> GetAll();
+        IEnumerable<ProdutoResponse> RecuperarTodos();
 
-        ProdutoResponse GetById(int id);
-        IEnumerable<ProdutoResponse> GetByCategoria(string categoria);
+        ProdutoResponse RecuperarPorId(int id);
+        IEnumerable<ProdutoResponse> RecuperarPorCategoria(string categoria);
     }
 }

@@ -15,7 +15,7 @@ namespace RestApiModeloDDD.Infrastructure.Data.Repositorys
             _sqlContext = sqlContext;
         }
 
-        public IEnumerable<Produto> GetByCategoria(string categoria)
+        public IEnumerable<Produto> RecuperarPorCategoria(string categoria)
         {
             return _sqlContext.Set<Produto>()
                 .Where(c => c.Categoria.Nome.ToUpper() == categoria.ToUpper())

@@ -10,16 +10,19 @@ namespace SelfieBurguer.Domain.Enums
         [Description("Processando Pagamento")]
         Processando_Pagamento = 2,
 
-        [Description("Preparando Pedido")]
-        Preparando_Pedido = 3,
+        [Description("Recebido")]
+        Recebido = 3,
 
-        [Description("Pedido Finalizado")]
-        Pedido_Finalizado = 4,
+        [Description("Em Preparação")]
+        Em_Preparacao = 4,
 
-        [Description("Pedido Concluído")]
-        Pedido_Concluido = 5,
+        [Description("Pronto")]
+        Pronto = 5,
 
-        [Description("Pedido Cancelado")]
-        Pedido_Cancelado = 6,
+        [Description("Finalizado")]
+        Finalizado = 6,
+
+        [Description("Cancelado")]
+        Cancelado = 7,
     }
 }

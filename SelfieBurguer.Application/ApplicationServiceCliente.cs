@@ -26,7 +26,7 @@ namespace SelfieBurguer.Application
 
         public void Update(int id, ClienteRequest request)
         {
-            Cliente cliente = _serviceCliente.GetById(id);
+            Cliente cliente = _serviceCliente.RecuperarPorId(id);
 
             cliente.SetNome(request.Nome);
             cliente.SetSobrenome(request.Sobrenome);
@@ -37,26 +37,26 @@ namespace SelfieBurguer.Application
 
         public void Delete(int id)
         {
-            Cliente cliente = _serviceCliente.GetById(id);
+            Cliente cliente = _serviceCliente.RecuperarPorId(id);
             _serviceCliente.Delete(cliente);
         }
 
-        public IEnumerable<ClienteResponse> GetAll()
+        public IEnumerable<ClienteResponse> RecuperarTodos()
         {
-            IEnumerable<Cliente> clientes = _serviceCliente.GetAll();
+            IEnumerable<Cliente> clientes = _serviceCliente.RecuperarTodos();
 
             return _mapper.Map<IEnumerable<ClienteResponse>>(clientes);
         }
 
-        public ClienteResponse GetById(int id)
+        public ClienteResponse RecuperarPorId(int id)
         {
-            Cliente cliente = _serviceCliente.GetById(id);
+            Cliente cliente = _serviceCliente.RecuperarPorId(id);
             return _mapper.Map<ClienteResponse>(cliente);
         }
 
-        public ClienteResponse GetByCpf(string cpf)
+        public ClienteResponse RecuperarPorCpf(string cpf)
         {
-            Cliente cliente = _serviceCliente.GetByCpf(cpf);
+            Cliente cliente = _serviceCliente.RecuperarPorCpf(cpf);
             return _mapper.Map<ClienteResponse>(cliente);
         }
     }

@@ -17,14 +17,14 @@ namespace SelfieBurguer.Domain.Services
             _repository.Add(obj);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> RecuperarTodos()
         {
-            return _repository.GetAll();
+            return _repository.RecuperarTodos();
         }
 
-        public TEntity GetById(int id)
+        public TEntity RecuperarPorId(int id)
         {
-            return _repository.GetById(id);
+            return _repository.RecuperarPorId(id);
         }
 
         public void Delete(TEntity obj)

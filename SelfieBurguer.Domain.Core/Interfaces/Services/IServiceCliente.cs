@@ -5,7 +5,7 @@ namespace SelfieBurguer.Domain.Core.Interfaces.Services
 {
     public interface IServiceCliente : IServiceBase<Cliente>
     {
-        Cliente GetByCpf(string cpf);
+        Cliente RecuperarPorCpf(string cpf);
         Cliente Instantiate(ClienteRequest request);
     }
 }

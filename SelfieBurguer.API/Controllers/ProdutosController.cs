@@ -23,9 +23,9 @@ namespace SelfieBurguer.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("/api/produtos")]
-        public ActionResult<IEnumerable<ProdutoResponse>> GetAll()
+        public ActionResult<IEnumerable<ProdutoResponse>> RecuperarTodos()
         {
-            var response = _applicationServiceProduto.GetAll();
+            var response = _applicationServiceProduto.RecuperarTodos();
 
             return Ok(response);
         }
@@ -36,9 +36,9 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<ProdutoResponse> GetById([FromRoute] int id)
+        public ActionResult<ProdutoResponse> RecuperarPorId([FromRoute] int id)
         {
-            var response = _applicationServiceProduto.GetById(id);
+            var response = _applicationServiceProduto.RecuperarPorId(id);
 
             return response.Id > 0 ? Ok(response) : NotFound();
         }
@@ -49,9 +49,9 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="categoria"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<IEnumerable<ProdutoResponse>> GetByCategoria([FromQuery] string categoria)
+        public ActionResult<IEnumerable<ProdutoResponse>> RecuperarPorCategoria([FromQuery] string categoria)
         {
-            var response = _applicationServiceProduto.GetByCategoria(categoria);
+            var response = _applicationServiceProduto.RecuperarPorCategoria(categoria);
 
             return response.Count() > 0 ? Ok(response) : NotFound();
         }
@@ -62,7 +62,7 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Post([FromBody] ProdutoRequest request)
+        public ActionResult Adicionar([FromBody] ProdutoRequest request)
         {
             if (request == null) return BadRequest();
 
@@ -90,7 +90,7 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public ActionResult Put([FromRoute] int id, [FromBody] ProdutoRequest request)
+        public ActionResult Editar([FromRoute] int id, [FromBody] ProdutoRequest request)
         {
             if (request == null || id == 0) return BadRequest();
 
@@ -106,7 +106,7 @@ namespace SelfieBurguer.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public ActionResult Delete([FromRoute] int id)
+        public ActionResult Deletar([FromRoute] int id)
         {
             if (id == 0) return BadRequest();
 
