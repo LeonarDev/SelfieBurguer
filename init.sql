@@ -1,5 +1,5 @@
-﻿USE master;
-GO
+﻿-- USE master;
+-- GO
 
 CREATE TABLE Usuario (
 	Id INT NOT NULL IDENTITY PRIMARY KEY,
@@ -65,7 +65,7 @@ INSERT INTO Cliente(Nome, Sobrenome, Email, Cpf, Ativo, DataCadastro) VALUES('Ar
 INSERT INTO Categoria(Nome) VALUES('Lanche')
 INSERT INTO Categoria(Nome) VALUES('Bebida')
 INSERT INTO Categoria(Nome) VALUES('Sobremesa')
-INSERT INTO Categoria(Nome) VALUES('Adicional')
+INSERT INTO Categoria(Nome) VALUES('Acompanhamento')
 INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Big-Burguer', 'Dois hambúrgueres, alface, queijo, molho especial, cebola, picles, num pão com gergelim', 20.0, 1, 1)
 INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Total-Cola', 'Bebida gaseificada sabor Cola', 5.0, 1, 2)
 INSERT INTO Produto(Nome, Descricao, Valor, Disponivel, CategoriaId) VALUES('Brownie', 'Bolo de chocolate solado', 10.0, 1, 3)
