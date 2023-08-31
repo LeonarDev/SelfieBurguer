@@ -44,7 +44,7 @@ namespace SelfieBurguer.Domain.Services
 
                 pedido.SetStatus(status);
 
-                if (status == StatusEnum.Pedido_Concluido || status == StatusEnum.Pedido_Cancelado)
+                if (status == StatusEnum.Pronto || status == StatusEnum.Finalizado)
                 {
                     pedido.SetDataFinalizacao(DateTime.Now);
                 }
