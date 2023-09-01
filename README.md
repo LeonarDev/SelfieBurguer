@@ -14,10 +14,9 @@ Basicamente, ambas as versões constróem localmente a estrutura responsável pe
 
 A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável, refletindo constantemente as tendências mais modernas no contexto da Arquitetura de Software.
 
-<hr>
 <br>
 
-### 🚧 Projeto em construção, porém funcional. Confira nas opções a baixo as formas de executá-lo:
+## Formas de executar a aplicação:
 
 <details>
 <summary>Executar via Kubernets</summary>
