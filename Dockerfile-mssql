@@ -1,0 +1,35 @@
+# Use uma imagem base do SQL Server
+FROM mcr.microsoft.com/mssql/server:2019-latest
+
+# Configurações de ambiente
+ENV ACCEPT_EULA=Y \
+    SA_PASSWORD=YourStrong@Passw0rd \
+    DATABASE_NAME=master \
+    MSSQL_DATA_DIR=/var/opt/mssql/data \
+    MSSQL_LOG_DIR=/var/opt/mssql/log \
+    MSSQL_BACKUP_DIR=/var/opt/mssql/backup \
+    MSSQL_SSL_KEY=/var/opt/mssql/certs/key.pem \
+    MSSQL_SSL_CERT=/var/opt/mssql/certs/cert.pem
+
+# Copia os arquivos key.pem e cert.pem para o container
+COPY key.pem /var/opt/mssql/certs/
+COPY cert.pem /var/opt/mssql/certs/
+
+# Altera para o usuário root
+USER root
+
+# Copia o script de entrypoint e dá permissões
+COPY init.sql /usr/src/app/
+COPY entrypoint.sh /usr/src/app/
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+USER 1001
+
+# Criação do banco de dados e inicia o SQL Server
+CMD /bin/bash -c '/usr/src/app/entrypoint.sh & /opt/mssql/bin/sqlservr'
+
+# Define o diretório de trabalho
+WORKDIR /usr/src/app
+
+# Expõe a porta
+EXPOSE 1433
