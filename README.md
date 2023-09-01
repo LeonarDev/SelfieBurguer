@@ -13,9 +13,20 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 <br>
 
-> 🚧 Projeto em construção, porém funcional. Confira aqui em baixo as formas de executá-lo.
-<hr>
+#### 🚧 Projeto em construção, porém funcional. Confira nas opções a baixo as formas de executá-lo:
+
+<details>
+<summary>Executar via Kubernets</summary>
+
+# 🚧
+
 <br>
+
+</details>
+
+
+<details>
+<summary>Executar via Docker-Compose</summary>
 
 ## 👨‍💻 Instruções de execução no terminal
 Abra o terminal de sua preferência, clone o projeto e acesse o diretório raiz.
@@ -83,3 +94,5 @@ Em seguida, clique no ícone de "play" verde do Docker Compose, localizado no ce
 <br>
 
 Aguarde alguns instantes até que o navegador abra automaticamente o swagger da aplicação.
+
+</details>
