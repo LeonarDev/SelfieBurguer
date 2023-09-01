@@ -6,10 +6,11 @@
 
 ## Stack
 
-Técnicamente, este projeto é impulsionado pelo Docker Compose, no qual constrói a estrutura responsável pela execução da aplicação localmente com os containers:
-- SQL Server
-- Carga de dados para a construção do banco
-- Web-Api em .NET 6 implementada com arquitetura hexagonal e Domain Driven Design
+Na sua primeira versão, este projeto foi impulsionado pelo Docker Compose, já na segunda versão, a atual, é impulsionado pelo Kubernets.
+
+Basicamente, ambas as versões constróem localmente a estrutura responsável pela execução da aplicação através dos containers:
+1. SQL Server e carga de dados para a construção do banco
+2. Web-Api em .NET 6, implementada com arquitetura hexagonal e Domain Driven Design
 
 A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável, refletindo constantemente as tendências mais modernas no contexto da Arquitetura de Software.
 
