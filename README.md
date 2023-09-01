@@ -21,8 +21,19 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 <details>
 <summary>Executar via Kubernets</summary>
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
-# 🚧
+
+```sh
+kubectl apply -f k8s/
+	mssql-deployment.yaml
+	mssql-service.yaml
+	selfie-app-deployment.yaml
+	selfie-app-service.yaml
+```
+
+Acessar `http://localhost:32386/swagger`
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 <br>
 
