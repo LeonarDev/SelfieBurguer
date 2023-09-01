@@ -20,7 +20,7 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 ## 👨‍💻 Instruções de execução no terminal
 Abra o terminal de sua preferência, clone o projeto e acesse o diretório raiz.
 
-Execute o comando `./ambiente-iniciar.ps1` (Windows) ou `./ambiente-iniciar.sh` (Linux e Mac) para buildar a aplicação:
+Execute o comando `./ambiente-iniciar.ps1` (Windows com WSL2) ou `./ambiente-iniciar.sh` (Linux e Mac) para buildar a aplicação:
 
 ```sh
 # Os arquivos de script "ambiente-iniciar.ps1" e "ambiente-iniciar.sh" executam:
@@ -43,7 +43,7 @@ Abra seu navegador e acesse a documentação da aplicação pela url `http://loc
 <br>
 <br>
 
-⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows) ou `./ambiente-parar.sh` (Linux e Mac).
+⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows com WSL2) ou `./ambiente-parar.sh` (Linux e Mac).
 
 ```sh
 # Os arquivos de script "ambiente-parar.ps1" e "ambiente-parar.sh" executam:
