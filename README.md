@@ -25,14 +25,23 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 
 ```sh
-kubectl apply -f k8s/
-	mssql-deployment.yaml
-	mssql-service.yaml
-	selfie-app-deployment.yaml
-	selfie-app-service.yaml
+kubectl apply -f k8s/mssql-deployment.yaml
+```
+
+```sh
+kubectl apply -f k8s/mssql-service.yaml
+```
+
+```sh
+kubectl apply -f k8s/selfie-app-deployment.yaml
+```
+
+```sh
+kubectl apply -f k8s/selfie-app-service.yaml
 ```
 
 Acessar `http://localhost:32386/swagger`
+
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 <br>
