@@ -1,6 +1,8 @@
 ﻿# SelfieBurguer API
 
-A SelfieBurguer API é uma aplicação elaborada para o cliente realizar o autoatendimento do seu pedido sem a necessidade de interação com um atendente real.
+> Aplicação elaborada para o usuário realizar o autoatendimento do seu pedido sem a necessidade de interação com um atendente real. Trazendo celeridade e eficiência ao processo de escolha de produtos. Através da aplicação, os usuários podem escolher e conferir o status de seus pedidos de forma rápida e intuitiva, eliminando possíveis esperas e garantindo uma experiência conveniente.
+
+<br>
 
 ## Stack
 
@@ -11,9 +13,10 @@ Técnicamente, este projeto é impulsionado pelo Docker Compose, no qual constr�
 
 A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável, refletindo constantemente as tendências mais modernas no contexto da Arquitetura de Software.
 
+<hr>
 <br>
 
-#### 🚧 Projeto em construção, porém funcional. Confira nas opções a baixo as formas de executá-lo:
+### 🚧 Projeto em construção, porém funcional. Confira nas opções a baixo as formas de executá-lo:
 
 <details>
 <summary>Executar via Kubernets</summary>
