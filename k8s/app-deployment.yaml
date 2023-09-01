@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selfie-app
+  template:
+    metadata:
+      labels:
+        app: selfie-app
+    spec:
+      containers:
+        - name: selfie-app
+          image: selfieburguerapi  # Use a imagem correta do seu registro
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_HOST
+              value: mssql-service   # Nome do serviço do SQL Server
+            - name: DB_NAME
+              value: SelfieBurguerApp
+            - name: DB_SA_PASSWORD
+              value: YourStrong@Passw0rd
