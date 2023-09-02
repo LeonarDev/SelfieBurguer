@@ -18,9 +18,10 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 ## Formas de executar a aplicação:
 
+
 <details>
-<summary>Executar via Kubernets</summary>
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+<summary>Executar via Kubernets 👆</summary>
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 
 ```sh
@@ -32,16 +33,16 @@ kubectl apply -f k8s/mssql-service.yaml
 ```
 
 ```sh
-kubectl apply -f k8s/selfie-app-deployment.yaml
+kubectl apply -f k8s/app-deployment.yaml
 ```
 
 ```sh
-kubectl apply -f k8s/selfie-app-service.yaml
+kubectl apply -f k8s/app-service.yaml
 ```
 
-Acessar `http://localhost:32386/swagger`
+Acessar no navegador: `http://localhost:32386/swagger`
 
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 <br>
 
@@ -49,7 +50,7 @@ Acessar `http://localhost:32386/swagger`
 
 
 <details>
-<summary>Executar via Docker-Compose</summary>
+<summary>Executar via Docker-Compose 👆</summary>
 
 ## 👨‍💻 Instruções de execução no terminal
 Abra o terminal de sua preferência, clone o projeto e acesse o diretório raiz.
