@@ -16,6 +16,11 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 <br>
 
+``🧑‍💻 Fluxo de desenvolvimento``: https://trello.com/b/nBPrMB9f/selfieburguer
+
+<br>
+
+
 ## Formas de executar a aplicação:
 
 
