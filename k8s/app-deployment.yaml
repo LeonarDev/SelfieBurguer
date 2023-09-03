@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: selfie-app
-          image: leonardev/selfieburguerapi:latest  # Use a imagem correta do seu registro
+          image: leonardev/selfieburguerapi:latest
           ports:
             - containerPort: 80
           env:
