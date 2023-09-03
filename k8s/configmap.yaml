@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  SQLSERVER_URL: "jdbc:sqlserver://mssql-service:1433;databaseName=master"
+  DB_HOST: "mssql-service"
+  DB_NAME: "SelfieBurguerApp"
+  DB_SA_PASSWORD: "YourStrong@Passw0rd"
