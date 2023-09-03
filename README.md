@@ -26,28 +26,29 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 <details>
 <summary>Executar via Kubernets 👆</summary>
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
+É necessário ter o `kubectl` instalado para seguir com o procedimento a seguir.
+
+O kubectl é o utilitário de linha de comando que permite interagir com clusters Kubernetes.
+
+Siga a documentação oficial para instalar: 
+`Linux/Mac:` https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/
+`Windows:`https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+
+<br>
+
+Após clonar o projeto, abra-o em um terminal de sua preferência, acesse o diretório raiz e execute o seguinte comando: `./ambiente-scripts/k8s-iniciar.sh`.
+
+Explicando, o comando a cima cria/atualiza os recursos no cluster de acordo com as definições fornecidas nos manifestos `yaml`:
 
 ```sh
-kubectl apply -f k8s/mssql-deployment.yaml
-```
-
-```sh
-kubectl apply -f k8s/mssql-service.yaml
-```
-
-```sh
-kubectl apply -f k8s/app-deployment.yaml
-```
-
-```sh
+kubectl apply -f k8s/mssql-deployment.yaml;
+kubectl apply -f k8s/mssql-service.yaml;
+kubectl apply -f k8s/app-deployment.yaml;
 kubectl apply -f k8s/app-service.yaml
 ```
 
-Acessar no navegador: `http://localhost:32386/swagger`
-
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+Caso a execução tenha sido realizada com sucesso, a aplicação estará executando localmente na sua máquina. Para conferi-la, acesse no seu navegador: http://localhost:32386/swagger
 
 <br>
 
@@ -60,10 +61,10 @@ Acessar no navegador: `http://localhost:32386/swagger`
 ## 👨‍💻 Instruções de execução no terminal
 Abra o terminal de sua preferência, clone o projeto e acesse o diretório raiz.
 
-Execute o comando `./ambiente-iniciar.ps1` (Windows com WSL2) ou `./ambiente-iniciar.sh` (Linux e Mac) para buildar a aplicação:
+Execute o comando `./ambiente-scripts/dcompose-iniciar.ps1` (Windows com WSL2) ou `./ambiente-scripts/dcompose-iniciar.sh` (Linux e Mac) para buildar a aplicação:
 
 ```sh
-# Os arquivos de script "ambiente-iniciar.ps1" e "ambiente-iniciar.sh" executam:
+# Os arquivos de script "ambiente-scripts/dcompose-iniciar.ps1" e "ambiente-scripts/dcompose-iniciar.sh" executam:
 docker-compose -f .\docker-compose.yml up
 ```
 
@@ -83,10 +84,10 @@ Abra seu navegador e acesse a documentação da aplicação pela url `http://loc
 <br>
 <br>
 
-⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-parar.ps1` (Windows com WSL2) ou `./ambiente-parar.sh` (Linux e Mac).
+⚠️ Para finalizar os containers, digite `CTRL+C` no terminal e em seguida execute o comando `./ambiente-scripts/dcompose-parar.ps1` (Windows com WSL2) ou `./ambiente-scripts/dcompose-parar.sh` (Linux e Mac).
 
 ```sh
-# Os arquivos de script "ambiente-parar.ps1" e "ambiente-parar.sh" executam:
+# Os arquivos de script "ambiente-scripts/dcompose-parar.ps1" e "ambiente-scripts/dcompose-parar.sh" executam:
 docker-compose -f .\docker-compose.yml down ; docker rm $(docker ps -q --filter status=exited) ;  docker ps -a
 ```
 
