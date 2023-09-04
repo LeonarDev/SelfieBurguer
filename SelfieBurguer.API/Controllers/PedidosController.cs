@@ -86,7 +86,7 @@ namespace SelfieBurguer.API.Controllers
         {
            if (request == null || id == 0) return BadRequest();
 
-           _applicationServicePedido.Update(id, request);
+           _applicationServicePedido.AlterarStatus(id, request);
 
            return Ok($"Pedido {request.Nome} atualizado com sucesso!");
         }
