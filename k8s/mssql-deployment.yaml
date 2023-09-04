@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mssqldata
-          image: leonardev/custom-mssql:latest
+          image: leonardev/test-mssql:latest
           env:
             - name: ACCEPT_EULA
               value: "Y"
