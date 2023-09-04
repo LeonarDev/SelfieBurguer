@@ -1,12 +1,12 @@
-﻿echo  
+echo  
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 echo  
-echo ATENCAO! SCRIPTS SENDO EXECUTADOS EM 10...
+echo ATENCAO! SCRIPTS SENDO EXECUTADOS EM 15 SEGUNDOS...
 echo  
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo  
 
-sleep 10
+sleep 15
 
 echo EXECUTANDO SCRIPTS...
 
