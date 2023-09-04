@@ -19,7 +19,7 @@ namespace SelfieBurguer.Domain.Services
             _repositoryProduto = repositoryProduto;
         }
 
-        public void AdicionarProdutos(Pedido pedido, int[]? produtosIds) // testar
+        public void AdicionarProdutos(Pedido pedido, int[]? produtosIds)
         {
             if (produtosIds != null && produtosIds.Any())
             {
@@ -34,7 +34,7 @@ namespace SelfieBurguer.Domain.Services
             }
         }
 
-        public void AlterarStatus(int id, PedidoRequest request) // testar
+        public void AlterarStatus(int id, PedidoRequest request)
         {
             Pedido pedido = _repositoryPedido.RecuperarPorId(id);
 
