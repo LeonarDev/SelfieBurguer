@@ -27,19 +27,17 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 <details>
 <summary>Executar via Kubernets 👆</summary>
 
-É necessário ter o `kubectl` instalado para seguir com o procedimento a seguir.
+É necessário ter o `kubectl` e o `kind` instalados para seguir com os procedimentos a seguir.
 
-O kubectl é o utilitário de linha de comando que permite interagir com clusters Kubernetes.
+O `kubectl` é o utilitário de linha de comando que permite interagir com clusters `Kubernetes`. Já o `kind` permite que você execute o Kubernetes no seu **computador local**. Estas ferramentas requerem que você tenha o `Docker` instalado e devidamente configurado
 
-Siga a documentação oficial para instalar: 
-`Linux/Mac:` https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/
-`Windows:`https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+Siga a documentação oficial para instalar: https://kubernetes.io/pt-br/docs/tasks/tools/
 
 <br>
 
 Após clonar o projeto, abra-o em um terminal de sua preferência, acesse o diretório raiz e execute o seguinte comando: `./ambiente-scripts/k8s-iniciar.sh`.
 
-Explicando, o comando a cima cria/atualiza os recursos no cluster de acordo com as definições fornecidas nos manifestos `yaml`:
+Explicando, o comando acima cria/atualiza os recursos no cluster de acordo com as definições fornecidas nos manifestos `yaml`:
 
 ```sh
 kubectl apply -f k8s/mssql-deployment.yaml;
@@ -55,6 +53,8 @@ Caso não tenha funcionado, você precisará criar uma conexão direta entre uma
 Volte ao terminal e execute: `kubectl port-forward service/app-service 32386:80`
 
 Vá até o navegador e acesse a url com a porta `32386` mapeada: http://localhost:32386/swagger
+
+> Explicando: Dependendo da ferramenta escolhida para executar o Kubernets localmente, pode haver particularidades nas tentativas de acessar o container pelas diferentes portas informadas. Por isso mantenho as duas soluções neste passo a passo.
 
 <br>
 
