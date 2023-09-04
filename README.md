@@ -48,7 +48,13 @@ kubectl apply -f k8s/app-deployment.yaml;
 kubectl apply -f k8s/app-service.yaml
 ```
 
-Caso a execução tenha sido realizada com sucesso, a aplicação estará executando localmente na sua máquina. Para conferi-la, acesse no seu navegador: http://localhost:32386/swagger
+Caso a execução tenha sido realizada com sucesso, a aplicação estará executando localmente na sua máquina. Para conferi-la, acesse no seu navegador: http://localhost/swagger
+
+Caso não tenha funcionado, você precisará criar uma conexão direta entre uma porta local em sua máquina e uma porta dentro de um pod em execução. Para isto, utilize o recurso 'port-forward': 
+
+Volte ao terminal e execute: `kubectl port-forward service/app-service 32386:80`
+
+Vá até o navegador e acesse a url com a porta `32386` mapeada: http://localhost:32386/swagger
 
 <br>
 
