@@ -4,7 +4,7 @@
 
 <br>
 
-## Stack
+## Stack 👨‍💻
 
 Na sua primeira versão, este projeto foi impulsionado pelo Docker Compose, já na segunda versão, a atual, é impulsionado pelo Kubernets.
 
@@ -20,6 +20,10 @@ A proposta de desenvolvimento foi de manter uma arquitetura enxuta e escalável,
 
 <br>
 
+## Em Construção 🚧
+> Atualmente o projeto está sendo atualizado para ser executado na AWS, utilizando ECR, EKR, Api Gateway, Lambda, Cognito e RDS. 
+
+<br>
 
 ## Formas de executar a aplicação:
 
